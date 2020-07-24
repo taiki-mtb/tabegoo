@@ -15,5 +15,9 @@ module Webapp
       g.assets false          # CSS, JavaScriptファイルは生成しない
       g.test_framework false  # testファイルは生成しない
     end
+        config.i18n.default_locale = :ja # デフォルトのlocaleを日本語(:ja)にする
+
+    #　#　以下の記述を追記する(設定必須)
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end

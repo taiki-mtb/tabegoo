@@ -1,10 +1,11 @@
 <header class="navbar navbar-fixed-top">
- <div class="container">
-   <%= link_to(image_tag("", :alt => ""), root_url, id: 'logo') %>
-   <nav>
-     <ul class="nav navbar-nav navbar-right">
-       <li><%= link_to 'ログイン' %></li>
-     </ul>
-   </nav>
- </div>
+  <div class="container">
+    <%= link_to(image_tag("", :alt => ""), root_url, id: 'logo') %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'ログイン' %></li>
+        <li><%= link_to 'ユーザー登録', signup_path %></li>
+      </ul>
+    </nav>
+  </div>
 </header>
