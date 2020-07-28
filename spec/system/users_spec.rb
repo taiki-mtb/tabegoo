@@ -45,11 +45,11 @@ RSpec.describe "Users", type: :system do
       before do
         visit user_path(user)
       end
- 
+
       it "「プロフィール」の文字列が存在することを確認" do
         expect(page).to have_content 'プロフィール'
       end
- 
+
       it "正しいタイトルが表示されることを確認" do
         expect(page).to have_title full_title('プロフィール')
       end
