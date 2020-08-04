@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
+  let!(:restaurant_yesterday) { create(:restaurant, :yesterday) }
+  let!(:restaurant_one_week_ago) { create(:restaurant, :one_week_ago) }
+  let!(:restaurant_one_month_ago) { create(:restaurant, :one_month_ago) }
   let!(:restaurant) { create(:restaurant) }
 
   context "バリデーション" do
