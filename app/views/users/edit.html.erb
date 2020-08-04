@@ -22,6 +22,12 @@
       <%= f.text_field :sex, class: 'form-control', id: 'user_sex' %>
     </div>
     <%= f.submit "更新する", class: "btn btn-primary" %>
+<<<<<<< HEAD
+=======
+    <p></p>
+    <%= link_to "アカウントを削除する", user_path(@user), method: :delete,
+                                data: { confirm: "本当にこのアカウントを削除してよろしいですか？" } %> 
+>>>>>>> update_users
     <% end %>
   </div>
 </div>
