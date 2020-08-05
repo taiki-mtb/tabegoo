@@ -2,7 +2,6 @@ FactoryBot.define do
   factory :restaurant do
     name { "レストラン" }
     description { "オススメのレストランです" }
-    association :user
     created_at { Time.current }
   end
   trait :yesterday do

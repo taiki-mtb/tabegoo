@@ -1,5 +1,4 @@
 class RestaurantsController < ApplicationController
-
   def new
     if current_user.admin?
       @restaurant = Restaurant.new

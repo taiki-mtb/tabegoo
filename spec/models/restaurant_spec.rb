@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
-  let!(:restaurant_yesterday) { create(:restaurant, :yesterday) }
-  let!(:restaurant_one_week_ago) { create(:restaurant, :one_week_ago) }
-  let!(:restaurant_one_month_ago) { create(:restaurant, :one_month_ago) }
   let!(:restaurant) { create(:restaurant) }
 
   context "バリデーション" do
@@ -27,12 +24,6 @@ RSpec.describe Restaurant, type: :model do
       restaurant = build(:restaurant, description: "あ" * 141)
       restaurant.valid?
       expect(restaurant.errors[:description]).to include("は140文字以内で入力してください")
-    end
-
-    it "ユーザーIDがなければ無効な状態であること" do
-      restaurant = build(:restaurant, user_id: nil)
-      restaurant.valid?
-      expect(restaurant.errors[:user_id]).to include("を入力してください")
     end
   end
 end
