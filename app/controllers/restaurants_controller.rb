@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = restaurants.build(restaurant_params)
+    @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       flash[:success] = "レストランが登録されました！"
       redirect_to root_url
@@ -20,7 +20,7 @@ class RestaurantsController < ApplicationController
 
   private
 
-    def dish_params
+    def restaurant_params
       params.require(:restaurant).permit(:name, :discription)
     end
 end

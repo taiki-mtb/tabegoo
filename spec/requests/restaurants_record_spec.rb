@@ -12,6 +12,23 @@ RSpec.describe "レストラン登録", type: :request do
       expect(response).to have_http_status "200"
       expect(response).to render_template('restaurants/new')
     end
+
+    it "有効なデータで登録できること" do
+      expect {
+        post restaurants_path, params: { restaurant: { name: "レストラン",
+                                                  description: "冬に行きたい、身体が温まるレストランです"} }
+      }.to change(Restaurant, :count).by(1)
+      follow_redirect!
+      expect(response).to render_template('static_pages/home')
+    end
+
+    it "無効なデータでは登録できないこと" do
+      expect {
+        post restaurants_path, params: { restaurant: { name: "",
+                                                 description: "冬に行きたい、身体が温まるレストランです"} }
+      }.not_to change(Restaurant, :count)
+      expect(response).to render_template('restaurants/new')
+    end
   end
 
   context "管理者以外のユーザーの場合" do
