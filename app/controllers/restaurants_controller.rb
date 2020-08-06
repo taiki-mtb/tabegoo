@@ -8,11 +8,15 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def show
+    @restaurant = Restaurant.find(params[:id])
+  end
+
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       flash[:success] = "レストランが登録されました！"
-      redirect_to root_url
+      redirect_to restaurant_path(@restaurant)
     else
       render 'restaurants/new'
     end
@@ -21,6 +25,6 @@ class RestaurantsController < ApplicationController
   private
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :discription)
+      params.require(:restaurant).permit(:name, :description)
     end
 end
