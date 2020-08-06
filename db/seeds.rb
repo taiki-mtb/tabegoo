@@ -13,3 +13,8 @@ User.create!(name:  "山田 太郎",
               password:              password,
               password_confirmation: password)
 end
+
+10.times do |n|
+  Restaurant.create!(name: "レストランexample",
+               description: "冬に行きたい、身体が温まるレストランです")
+end

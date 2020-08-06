@@ -35,6 +35,10 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  def feed
+    Restaurant.all
+  end
+
   private
 
     def downcase_email

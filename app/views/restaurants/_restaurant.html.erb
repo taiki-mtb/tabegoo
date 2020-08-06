@@ -1,0 +1,7 @@
+<li id="restaurant-<%= restaurant.id %>">
+  <span class="name"><%= link_to restaurant.name, "#" %></span>
+  <span class="description"><%= restaurant.description %></span><br>
+  <span class="timestamp">
+    <%= time_ago_in_words(restaurant.created_at) %>前に投稿
+  </span>
+</li>
