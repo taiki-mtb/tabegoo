@@ -107,7 +107,7 @@ RSpec.describe "Users", type: :system do
       expect(user.reload.email).not_to eq ""
     end
 
-    #context "アカウント削除処理", js: true do
+    #  context "アカウント削除処理", js: true do
     #  it "正しく削除できること" do
     #    click_link "アカウントを削除する"
     #    page.accept_confirm do
@@ -115,7 +115,7 @@ RSpec.describe "Users", type: :system do
     #    end
     #    expect(page).to have_content "自分のアカウントを削除しました"
     #  end
-    #end
+    #  end
   end
 
   describe "プロフィールページ" do
