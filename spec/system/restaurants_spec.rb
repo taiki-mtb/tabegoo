@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Restaurants", type: :system do
   let!(:admin_user) { create(:user, :admin) }
+  let!(:restaurant) { create(:restaurant) }
 
   describe "レストラン登録ページ" do
     before do
@@ -37,6 +38,23 @@ RSpec.describe "Restaurants", type: :system do
         fill_in "説明", with: "冬に行きたい、身体が温まるレストランです"
         click_button "登録する"
         expect(page).to have_content "名前を入力してください"
+      end
+    end
+  end
+
+  describe "レストラン詳細ページ" do
+    context "ページレイアウト" do
+      before do
+        visit restaurant_path(restaurant)
+      end
+
+      it "正しいタイトルが表示されること" do
+        expect(page).to have_title full_title("#{restaurant.name}")
+      end
+
+      it "レストラン情報が表示されること" do
+        expect(page).to have_content restaurant.name
+        expect(page).to have_content restaurant.description
       end
     end
   end

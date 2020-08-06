@@ -19,7 +19,7 @@ RSpec.describe "レストラン登録", type: :request do
                                                   description: "冬に行きたい、身体が温まるレストランです"} }
       }.to change(Restaurant, :count).by(1)
       follow_redirect!
-      expect(response).to render_template('static_pages/home')
+      expect(response).to render_template('restaurants/show')
     end
 
     it "無効なデータでは登録できないこと" do
