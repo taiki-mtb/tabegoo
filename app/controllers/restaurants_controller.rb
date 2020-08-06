@@ -36,6 +36,18 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    if logged_in? && current_user.admin?
+      @restaurant.destroy
+      flash[:success] = "レストランが削除されました"
+      redirect_to root_url
+    else
+      flash[:danger] = "管理人しか削除できません"
+      redirect_to root_url
+    end
+  end
+
   private
 
     def restaurant_params
