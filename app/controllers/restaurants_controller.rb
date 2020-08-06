@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  before_action :correct_user, only: [:edit, :update]
+
   def new
     if logged_in? && current_user.admin?
       @restaurant = Restaurant.new
@@ -23,11 +25,9 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
     if @restaurant.update_attributes(restaurant_params)
       flash[:success] = "レストラン情報が更新されました！"
       redirect_to @restaurant
@@ -40,5 +40,14 @@ class RestaurantsController < ApplicationController
 
     def restaurant_params
       params.require(:restaurant).permit(:name, :description)
+    end
+
+    def correct_user
+      if logged_in? && current_user.admin?
+        @restaurant = Restaurant.find(params[:id])
+      else
+        flash[:danger] = "管理人しか編集できません"
+        redirect_to root_path
+      end
     end
 end
