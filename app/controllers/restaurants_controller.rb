@@ -22,6 +22,20 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def update
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.update_attributes(restaurant_params)
+      flash[:success] = "レストラン情報が更新されました！"
+      redirect_to @restaurant
+    else
+      render 'edit'
+    end
+  end
+
   private
 
     def restaurant_params
