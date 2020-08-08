@@ -1,4 +1,8 @@
 <li id="restaurant-<%= restaurant.id %>">
+  <span>
+    <%= link_to((image_tag restaurant.picture.thumb200.url),
+    restaurant_path(restaurant.id), class: 'restaurant-picture') if restaurant.picture.url.present? %>
+  </span>	
   <span class="name"><%= link_to restaurant.name,  restaurant_path(restaurant) %></span>
   <span class="description"><%= restaurant.description %></span><br>
   <span class="timestamp">

@@ -27,3 +27,6 @@
 
 # Ignore gems
 /vendor
+
+# Ignore unnecessary pictures
+/public/uploads/*

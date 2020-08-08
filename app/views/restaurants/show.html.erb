@@ -1,14 +1,22 @@
 <% provide(:title, "#{@restaurant.name}") %>
 <div class="container">
   <div class="row">
-    <h2 class="restaurant-name"><%= @restaurant.name %></h2>
-    <div class="change-restaurant">
-      <% if logged_in? %>
-        <% if admin? %>
-          <%= link_to "編集", edit_restaurant_path(@restaurant), class: 'edit-restaurant' %>　
-        <% end %>
-      <% end %>
+    <div class="col-md-4">
+      <span class="picture">
+        <%= link_to((image_tag @restaurant.picture.thumb400.url), 
+        restaurant_path(@restaurant.id), class: 'restaurant-picture') if @restaurant.picture.url.present? %>
+      </span>
     </div>
-    <h4><%= @restaurant.description %></h4>
+    <div class="col-md-8">    
+      <h2 class="restaurant-name"><%= @restaurant.name %></h2>
+      <div class="change-restaurant">
+        <% if logged_in? %>
+          <% if admin? %>
+            <%= link_to "編集", edit_restaurant_path(@restaurant), class: 'edit-restaurant' %>　
+          <% end %>
+        <% end %>
+      </div>
+      <h4><%= @restaurant.description %></h4>
+    </div>
   </div>
 </div>

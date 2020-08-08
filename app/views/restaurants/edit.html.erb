@@ -12,6 +12,10 @@
           <%= f.label :description %>
           <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'restaurant_description' %>
         </div>
+        <span class="picture">
+          <%= f.label :picture %>
+          <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'restaurant_picture' %>
+        </span>
         <%= f.submit "更新する", class: "btn btn-primary" %>
         <%= link_to "レストランを削除する", restaurant_path(@restaurant), method: :delete,
                              data: { confirm: "本当にこのレストランを削除してよろしいですか？" } %>
