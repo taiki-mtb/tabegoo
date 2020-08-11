@@ -4,6 +4,8 @@ RSpec.describe "レストラン登録", type: :request do
   let!(:admin_user) { create(:user, :admin) }
   let!(:user) { create(:user) }
   let!(:restaurant) { create(:restaurant) }
+  let(:picture_path) { File.join(Rails.root, 'spec/fixtures/test_restaurant.jpg') }
+  let(:picture) { Rack::Test::UploadedFile.new(picture_path) }
 
   context "管理者ユーザーの場合" do
     it "レスポンスが正常に表示されること" do
@@ -16,7 +18,8 @@ RSpec.describe "レストラン登録", type: :request do
     it "有効なデータで登録できること" do
       expect {
         post restaurants_path, params: { restaurant: { name: "レストラン",
-                                                       description: "冬に行きたい、身体が温まるレストランです" } }
+                                                       description: "冬に行きたい、身体が温まるレストランです",
+                                                       picture: picture } }
       }.to change(Restaurant, :count).by(1)
       follow_redirect!
       expect(response).to render_template('restaurants/show')
@@ -25,7 +28,8 @@ RSpec.describe "レストラン登録", type: :request do
     it "無効なデータでは登録できないこと" do
       expect {
         post restaurants_path, params: { restaurant: { name: "",
-                                                       description: "冬に行きたい、身体が温まるレストランです" } }
+                                                       description: "冬に行きたい、身体が温まるレストランです",
+                                                       picture: picture } }
       }.not_to change(Restaurant, :count)
       expect(response).to render_template('restaurants/new')
     end

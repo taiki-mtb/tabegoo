@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>ログイン - my portfolio</title>
+    
+
+
+<link rel="stylesheet" media="all" href="/assets/application-e8b5bf825672358a70a28b0635390f8acf799e4514e957424f3daba0b8c15db4.css" data-turbolinks-track="reload" />
+<script src="/assets/application-129480e006ce03bb5fbda08c37fb32618a7f46d3429e76e80413c149a670a73c.js" data-turbolinks-track="reload"></script>
+
+    <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+  </script>
+<![endif]-->
+  </head>
+  <body>
+    <div id="page">
+      <header class="navbar navbar-fixed-top">
+  <div class="container">
+    <a id="logo" href="http://127.0.0.1/"><img alt="" src="" /></a>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="/signup">ユーザー登録</a></li>
+          <li><a href="/login">ログイン</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+      <h1>ログイン</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <form action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+      <div class = 'form-group'>
+        <label for="session_メールアドレス">メールアドレス</label>
+<input class="form-control" id="user_email" placeholder="メールアドレス" type="email" name="session[email]" />
+      </div>
+      <div class = 'form-group'>
+        <label for="session_パスワード">パスワード</label>
+        <input class="form-control" id="user_password" type="password" name="session[password]" />
+      </div>
+      <div class = 'form-group'>
+        <label class="checkbox inline" for="session_remember_me">
+          <input name="session[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="session[remember_me]" id="session_remember_me" />
+          <span>ログインしたままにする</span>
+</label>      </div>
+      <input type="submit" name="commit" value="ログイン" class="btn btn-primary" data-disable-with="ログイン" />
+</form>    <br>ユーザー登録されていない方は<a href="/signup">こちら</a><br>
+    パスワードをお忘れの方は<a href="#">こちら</a>
+  </div>
+</div>
+
+    </div>
+    <footer>
+  <div class="container">
+    <div class="row copyright">
+      <div class="col-md-12 text-center">
+        <p>
+          <small class="block">&copy; 2020 matoba taiki</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
