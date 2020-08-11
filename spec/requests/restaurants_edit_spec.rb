@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe "レストラン編集", type: :request do
   let!(:admin_user) { create(:user, :admin) }
   let!(:restaurant) { create(:restaurant) }
+  let(:picture2_path) { File.join(Rails.root, 'spec/fixtures/test_restaurant2.jpg') }
+  let(:picture2) { Rack::Test::UploadedFile.new(picture2_path) }
 
   context "管理者ユーザーの場合" do
     it "レスポンスが正常に表示されること" do
@@ -10,7 +12,8 @@ RSpec.describe "レストラン編集", type: :request do
       get edit_restaurant_path(restaurant)
       expect(response).to render_template('restaurants/edit')
       patch restaurant_path(restaurant), params: { restaurant: { name: "レストラン",
-                                                                 description: "冬に行きたい、レストランです" } }
+                                                                 description: "冬に行きたい、レストランです",
+                                                                 picture: picture2 } }
       redirect_to restaurant
       follow_redirect!
       expect(response).to render_template('restaurants/show')

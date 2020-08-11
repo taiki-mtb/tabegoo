@@ -212,3 +212,9 @@ h2.restaurant-name {
     display: inline-block;
   }
 }
+
+.restaurant-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
