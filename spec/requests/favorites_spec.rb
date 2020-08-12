@@ -22,4 +22,3 @@ RSpec.describe "お気に入り登録機能", type: :request do
     end
   end
 end
-

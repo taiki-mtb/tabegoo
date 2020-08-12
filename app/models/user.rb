@@ -40,6 +40,18 @@ class User < ApplicationRecord
     Restaurant.all
   end
 
+  def favorite(restaurant)
+    Favorite.create!(user_id: id, restaurant_id: restaurant.id)
+  end
+
+  def unfavorite(restaurant)
+    Favorite.find_by(user_id: id, restaurant_id: restaurant.id).destroy
+  end
+
+  def favorite?(restaurant)
+    !Favorite.find_by(user_id: id, restaurant_id: restaurant.id).nil?
+  end
+
   private
 
     def downcase_email

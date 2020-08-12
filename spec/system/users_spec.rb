@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:admin_user) { create(:user, :admin) }
+  let!(:restaurant) { create(:restaurant) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -140,6 +141,20 @@ RSpec.describe "Users", type: :system do
 
       it "プロフィール編集ページへのリンクが表示されていることを確認" do
         expect(page).to have_content 'プロフィール編集'
+      end
+    end
+
+    context "お気に入り登録/解除" do
+      before do
+        login_for_system(user)
+      end
+
+      it "レストランのお気に入り登録/解除ができること" do
+        expect(user.favorite?(restaurant)).to be_falsey
+        user.favorite(restaurant)
+        expect(user.favorite?(restaurant)).to be_truthy
+        user.unfavorite(restaurant)
+        expect(user.favorite?(restaurant)).to be_falsey
       end
     end
   end
