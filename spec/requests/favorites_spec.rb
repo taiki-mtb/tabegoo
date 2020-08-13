@@ -5,17 +5,49 @@ RSpec.describe "お気に入り登録機能", type: :request do
   let(:restaurant) { create(:restaurant) }
 
   context "お気に入り登録処理" do
+    context "ログインしている場合" do
+      before do
+        login_for_request(user)
+      end
+
+      it "料理のお気に入り登録ができること" do
+        expect {
+          post restaurant_favorites_path(restaurant.id)
+        }.to change(user.favorites, :count).by(1)
+      end
+
+      it "料理のAjaxによるお気に入り登録ができること" do
+        expect {
+          post restaurant_favorites_path(restaurant.id), xhr: true
+        }.to change(user.favorites, :count).by(1)
+      end
+
+      it "料理のお気に入り解除ができること" do
+        user.favorite(restaurant)
+        expect {
+          delete restaurant_favorites_path(restaurant.id)
+        }.to change(user.favorites, :count).by(-1)
+      end
+
+      it "料理のAjaxによるお気に入り解除ができること" do
+        user.favorite(restaurant)
+        expect {
+          delete restaurant_favorites_path(restaurant.id), xhr: true
+        }.to change(user.favorites, :count).by(-1)
+      end
+    end
+
     context "ログインしていない場合" do
       it "お気に入り登録は実行できず、ログインページへリダイレクトすること" do
         expect {
-          post "/favorites/#{restaurant.id}/create"
+          post restaurant_favorites_path(restaurant.id)
         }.not_to change(Favorite, :count)
         expect(response).to redirect_to login_path
       end
 
       it "お気に入り解除は実行できず、ログインページへリダイレクトすること" do
         expect {
-          delete "/favorites/#{restaurant.id}/destroy"
+          delete restaurant_favorites_path(restaurant.id)
         }.not_to change(Favorite, :count)
         expect(response).to redirect_to login_path
       end
