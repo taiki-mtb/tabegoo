@@ -1,0 +1,12 @@
+<% @restaurant = Restaurant.find(favorite.restaurant_id) %>
+<li id="favorite-<%= favorite.id %>">
+  <div class="row favorite-restaurant">
+    <div class="col-md-2">
+      <%= link_to((image_tag @restaurant.picture.url), restaurant_path(@restaurant), class: 'restaurant-picture') %>
+    </div>
+    <div class="col-md-7">
+      <p><%= link_to @restaurant.name, restaurant_path(@restaurant) %></p>
+      <p><%= @restaurant.description %></p>
+    </div>
+  </div>
+</li>

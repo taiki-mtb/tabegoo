@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:admin_user) { create(:user, :admin) }
+  let!(:other_user) { create(:user) }
+  let!(:restaurant) { create(:restaurant) }
+  let!(:other_restaurant) { create(:restaurant) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -140,6 +143,61 @@ RSpec.describe "Users", type: :system do
 
       it "プロフィール編集ページへのリンクが表示されていることを確認" do
         expect(page).to have_content 'プロフィール編集'
+      end
+    end
+
+    context "お気に入り登録/解除" do
+      before do
+        login_for_system(user)
+      end
+
+      it "レストランのお気に入り登録/解除ができること" do
+        expect(user.favorite?(restaurant)).to be_falsey
+        user.favorite(restaurant)
+        expect(user.favorite?(restaurant)).to be_truthy
+        user.unfavorite(restaurant)
+        expect(user.favorite?(restaurant)).to be_falsey
+      end
+
+      # it "トップページからお気に入り登録/解除ができること", js: true do
+      #   visit root_path
+      #   link = find('.like')
+      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #   link.click
+      #   link = find('.unlike')
+      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #   link.click
+      #   link = find('.like')
+      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      # end
+
+      # it "料理個別ページからお気に入り登録/解除ができること", js: true do
+      #   visit restaurant_path(restaurant)
+      #   link = find('.like')
+      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #   link.click
+      #   link = find('.unlike')
+      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #   link.click
+      #   link = find('.like')
+      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      # end
+
+      it "お気に入り一覧ページが期待通り表示されること" do
+        visit favorites_path
+        expect(page).not_to have_css ".favorite-restaurant"
+        user.favorite(restaurant)
+        user.favorite(other_restaurant)
+        visit favorites_path
+        expect(page).to have_css ".favorite-restaurant", count: 2
+        expect(page).to have_content restaurant.name
+        expect(page).to have_content restaurant.description
+        expect(page).to have_content other_restaurant.name
+        expect(page).to have_content other_restaurant.description
+        user.unfavorite(other_restaurant)
+        visit favorites_path
+        expect(page).to have_css ".favorite-restaurant", count: 1
+        expect(page).to have_content restaurant.name
       end
     end
   end

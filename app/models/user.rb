@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :restaurants, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   attr_accessor :remember_token
   before_save :downcase_email
   validates :name, presence: true, length: { maximum: 50 }
@@ -37,6 +38,18 @@ class User < ApplicationRecord
 
   def feed
     Restaurant.all
+  end
+
+  def favorite(restaurant)
+    Favorite.create!(user_id: id, restaurant_id: restaurant.id)
+  end
+
+  def unfavorite(restaurant)
+    Favorite.find_by(user_id: id, restaurant_id: restaurant.id).destroy
+  end
+
+  def favorite?(restaurant)
+    !Favorite.find_by(user_id: id, restaurant_id: restaurant.id).nil?
   end
 
   private
