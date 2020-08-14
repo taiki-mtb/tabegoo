@@ -156,6 +156,30 @@ RSpec.describe "Users", type: :system do
         user.unfavorite(restaurant)
         expect(user.favorite?(restaurant)).to be_falsey
       end
+
+      #it "トップページからお気に入り登録/解除ができること", js: true do
+      #  visit root_path
+      #  link = find('.like')
+      #  expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #  link.click
+      #  link = find('.unlike')
+      #  expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #  link.click
+      #  link = find('.like')
+      #  expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #end
+
+      #it "料理個別ページからお気に入り登録/解除ができること", js: true do
+      #  visit restaurant_path(restaurant)
+      #  link = find('.like')
+      #  expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #  link.click
+      #  link = find('.unlike')
+      #  expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #  link.click
+      #  link = find('.like')
+      #  expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      #end
     end
   end
 end

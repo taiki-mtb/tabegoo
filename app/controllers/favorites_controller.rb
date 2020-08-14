@@ -10,6 +10,10 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def index
+    @favorites = current_user.favorites
+  end
+
   def destroy
     @restaurant = Restaurant.find(params[:restaurant_id])
     current_user.favorites.find_by(restaurant_id: @restaurant.id).destroy
