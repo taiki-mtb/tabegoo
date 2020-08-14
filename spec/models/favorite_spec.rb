@@ -17,4 +17,3 @@ RSpec.describe Favorite, type: :model do
     expect(favorite).not_to be_valid
   end
 end
-
