@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Restaurants", type: :system do
   let!(:admin_user) { create(:user, :admin) }
+  let!(:user)       { create(:user) }
+  let!(:other_user) { create(:user) }
   let!(:restaurant) { create(:restaurant, :picture) }
+  let!(:comment)    { create(:comment) }
 
   describe "レストラン登録ページ" do
     before do
@@ -110,6 +113,36 @@ RSpec.describe "Restaurants", type: :system do
         click_button "更新する"
         expect(page).to have_content '名前を入力してください'
         expect(restaurant.reload.name).not_to eq ""
+      end
+    end
+
+    context "コメントの登録＆削除" do
+      before do
+        login_for_system(user)
+        visit restaurant_path(restaurant)
+        fill_in "comment_content", with: "料理も店員さんも最高でした。"
+        click_button "コメント"
+      end
+
+      it "レストランに対するコメントの登録＆削除が正常に完了すること" do
+        within find("#comment-#{Comment.last.id}") do
+          expect(page).to have_selector 'span', text: user.name
+          expect(page).to have_selector 'span', text: '料理も店員さんも最高でした。'
+        end
+        expect(page).to have_content "コメントを追加しました！"
+        click_link "削除", href: comment_path(Comment.last)
+        expect(page).not_to have_selector 'span', text: '料理も店員さんも最高でした。'
+        expect(page).to have_content "コメントを削除しました"
+      end
+
+      it "別ユーザーのコメントには削除リンクが無いこと" do
+        login_for_system(other_user)
+        visit restaurant_path(restaurant)
+        within find("#comment-#{Comment.last.id}") do
+          expect(page).to have_selector 'span', text: user.name
+          expect(page).to have_selector 'span', text: comment.content
+          expect(page).not_to have_link '削除', href: restaurant_path(restaurant)
+        end
       end
     end
   end
