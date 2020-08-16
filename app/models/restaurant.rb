@@ -7,6 +7,10 @@ class Restaurant < ApplicationRecord
   validates :description, length: { maximum: 140 }
   validate  :picture_size
 
+  def feed_comment(restaurant_id)
+    Comment.where("restaurant_id = ?", restaurant_id)
+  end
+
   private
 
     def picture_size
