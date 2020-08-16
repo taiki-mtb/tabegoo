@@ -3,7 +3,8 @@ class CommentsController < ApplicationController
 
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
-    @comment = @restaurant.comments.build(user_id: current_user.id, content: params[:comment][:content])
+    @comment = @restaurant.comments.build(user_id: current_user.id,
+                                          content: params[:comment][:content])
     if !@restaurant.nil? && @comment.save
       flash[:success] = "コメントを追加しました！"
     else
