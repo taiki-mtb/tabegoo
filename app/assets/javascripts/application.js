@@ -16,3 +16,6 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require_underscore.js
+//= require_gmaps/google
+//= require_googlemap.js

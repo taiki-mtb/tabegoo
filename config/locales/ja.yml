@@ -26,6 +26,7 @@ ja:
         description: 説明
         user_id: 作成者のID
         picture: 写真
+        map: 地図
       comment:
         user_id: コメント投稿者のID
         restaurant_id: コメントされたレストランのID
