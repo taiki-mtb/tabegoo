@@ -30,19 +30,34 @@ function drawMarkerCenterInit(pos) {
   return markerCenter;
 }
 
-// レストランページで地図を表示
 $(function(){
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers([
+  $('#searchAddressBtn').click(function() {
+    // Geocoderオブジェクト生成
+    var geocoder = new google.maps.Geocoder();
+    // 住所のテキストボックスから住所取得
+    var address = $('.city_address').val();
+    // 住所検索実行
+    geocoder.geocode(
       {
-        "lat": 0,
-        "lng": 0,
-    "infowindow":  "hello!"
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(16);
+        'address' : address,
+        'region' : 'jp'
+      },
+      function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          // 住所のデータを取得できた時,取得した座標をマップに反映
+          gMap.setCenter(results[0].geometry.location);
+          // 取得した座標をマーカーに反映
+          var pos = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+          gMarkerCenter.setPosition(pos);
+
+          // 取得した座標をテキストボックスにセット
+          $('#restaurant_latitude').val(pos.lat());
+          $('#restaurant_longitude').val(pos.lng());
+
+          } else {
+            // 失敗した時
+              alert('住所検索に失敗しました。<br>住所が正しいか確認してください');
+          }
+      });
   });
 });

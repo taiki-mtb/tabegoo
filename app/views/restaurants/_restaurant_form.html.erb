@@ -8,17 +8,22 @@
     <%= f.label :description %>
     <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'restaurant_description' %>
   </div>
-  <span class='picture'>
+  <div class='picture'>
     <%= f.label :picture %>
     <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'restaurant_picture' %>
-  </span>
+  </div>
+  <div class='form-group'>
+    <%= f.label :address %>
+    <%= f.text_field :city_address, class: "city_address" %>
+    <button id="searchAddressBtn" value="検索" type="button">場所を検索</button>
+  </div>
   <div class='form-group'>
     <%= f.label :map %>
     <%= f.text_field :latitude, readonly:"readonly" %>
     <%= f.text_field :longitude, readonly:"readonly" %>
     <div id='map'></div>
   </div>
-  <%= f.submit nil, class: 'btn btn-primary' %>
+  <%= f.submit nil, class: "btn btn-primary" %>
 <% end %>
 
 <script type="text/javascript">
