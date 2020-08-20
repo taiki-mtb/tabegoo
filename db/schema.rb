@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_052706) do
+ActiveRecord::Schema.define(version: 2020_08_20_061925) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "restaurant_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_052706) do
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.boolean "notification", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
