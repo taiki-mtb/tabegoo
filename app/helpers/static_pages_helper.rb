@@ -1,5 +1,5 @@
 module StaticPagesHelper
-	def random
+  def random
     Restaurant.pluck(:id).sample
   end
 end
