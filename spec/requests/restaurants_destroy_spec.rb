@@ -1,9 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "レストランの削除", type: :request do
-  let!(:admin_user) { create(:user, :admin) }
-  let!(:user) { create(:user) }
-  let!(:restaurant) { create(:restaurant) }
+  let!(:admin_user)  { create(:user, :admin) }
+  let!(:user)        { create(:user) }
+  let!(:restaurant)  { create(:restaurant) }
+  let!(:restaurant2) { create(:restaurant) }
 
   context "管理者ユーザーが削除する場合" do
     it "処理が成功し、トップページにリダイレクトすること" do
@@ -13,7 +14,7 @@ RSpec.describe "レストランの削除", type: :request do
       }.to change(Restaurant, :count).by(-1)
       redirect_to root_path
       follow_redirect!
-      expect(response).to redirect_to root_path
+      expect(response).to render_template root_path
     end
   end
 
