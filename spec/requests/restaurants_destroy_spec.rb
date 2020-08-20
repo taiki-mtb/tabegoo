@@ -1,10 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "レストランの削除", type: :request do
-  let!(:admin_user)  { create(:user, :admin) }
-  let!(:user)        { create(:user) }
-  let!(:restaurant)  { create(:restaurant) }
-  let!(:restaurant2) { create(:restaurant) }
+  let!(:admin_user)       { create(:user, :admin) }
+  let!(:user)             { create(:user) }
+  let!(:restaurant)       { create(:restaurant) }
+  let!(:other_restaurant) { create(:restaurant) }
 
   context "管理者ユーザーが削除する場合" do
     it "処理が成功し、トップページにリダイレクトすること" do

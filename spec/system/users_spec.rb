@@ -200,5 +200,42 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content restaurant.name
       end
     end
+
+    context "通知生成" do
+      context "管理者ユーザーじゃない場合" do
+        before do
+          login_for_system(user)
+          visit restaurant_path(restaurant)
+        end
+
+        it "コメントによって通知が作成されること" do
+          fill_in "comment_content", with: "コメントしました"
+          click_button "コメント"
+          expect(page).to have_css 'li.no_notification'
+          logout
+          login_for_system(admin_user)
+          expect(page).to have_css 'li.new_notification'
+          visit notifications_path
+          expect(page).to have_css 'li.no_notification'
+          expect(page).to have_content "#{user.name}さんからコメントがあります。"
+          expect(page).to have_content '「コメントしました」'
+        end
+      end
+
+      context "管理者ユーザーの場合" do
+        before do
+          login_for_system(admin_user)
+          visit restaurant_path(restaurant)
+        end
+
+        it "コメントによって通知が作成されないこと" do
+          fill_in "comment_content", with: "管理者がコメント"
+          click_button "コメント"
+          expect(page).to have_css 'li.no_notification'
+          visit notifications_path
+          expect(page).not_to have_content '管理者がコメント'
+        end
+      end
+    end
   end
 end

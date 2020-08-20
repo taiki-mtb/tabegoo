@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.describe "通知機能", type: :request do
-  let!(:user) { create(:user) }
+  let!(:admin_user)  { create(:user, :admin) }
+  let!(:user)        { create(:user) }
+  let!(:restaurant)  { create(:restaurant) }
 
   context "通知一覧ページの表示" do
     context "ログインしているユーザーの場合" do
