@@ -19,6 +19,7 @@
         <% end %>
       </div>
       <h4><%= @restaurant.description %></h4>
+      <div class="gmap" id="map"></div>      
       <div class="comment">
         <%= render "comments/feed_comments" %>
         <%= render "comments/new" %>
@@ -26,3 +27,12 @@
     </div>
   </div>
 </div>
+
+<script>
+  function initMap(){
+    var restaurant = {lat: <%= @lat %>, lng: <%= @lng %>};
+    var map = new google.maps.Map(
+        document.getElementById('map'), {center: restaurant, zoom: 15});
+    var marker = new google.maps.Marker({position: restaurant, map: map});
+  }
+</script>

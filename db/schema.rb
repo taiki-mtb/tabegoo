@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_134647) do
+ActiveRecord::Schema.define(version: 2020_08_19_091305) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "restaurant_id"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_08_15_134647) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
+    t.float "latitude", limit: 53
+    t.float "longitude", limit: 53
+    t.string "city_address"
     t.index ["user_id", "created_at"], name: "index_restaurants_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end

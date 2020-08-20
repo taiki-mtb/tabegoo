@@ -30,3 +30,6 @@
 
 # Ignore unnecessary pictures
 /public/uploads/*
+
+# Ignore 環境変数
+/.env

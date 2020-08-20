@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy ]
   end
   resources :comments, only: [:create, :destroy]
-  get    :login,     to: 'sessions#new'
-  post   :login,     to: 'sessions#create'
-  delete :logout,    to: 'sessions#destroy'
-  get    :favorites, to: 'favorites#index'
+  get    :login,         to: 'sessions#new'
+  post   :login,         to: 'sessions#create'
+  delete :logout,        to: 'sessions#destroy'
+  get    :favorites,     to: 'favorites#index'
 end

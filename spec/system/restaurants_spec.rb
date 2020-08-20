@@ -25,6 +25,9 @@ RSpec.describe "Restaurants", type: :system do
       it "入力部分に適切なラベルが表示されること" do
         expect(page).to have_content '名前'
         expect(page).to have_content '説明'
+        expect(page).to have_content '写真'
+        expect(page).to have_content '住所'
+        expect(page).to have_content '地図'
       end
     end
 
@@ -85,6 +88,9 @@ RSpec.describe "Restaurants", type: :system do
       it "入力部分に適切なラベルが表示されること" do
         expect(page).to have_content '名前'
         expect(page).to have_content '説明'
+        expect(page).to have_content '写真'
+        expect(page).to have_content '住所'
+        expect(page).to have_content '地図'
       end
     end
 

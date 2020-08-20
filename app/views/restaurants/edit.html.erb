@@ -16,6 +16,17 @@
           <%= f.label :picture %>
           <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'restaurant_picture' %>
         </span>
+        <div class='form-group'>
+          <%= f.label :address %>
+          <%= f.text_field :city_address, class: "city_address" %>
+          <button id="searchAddressBtn" value="検索" type="button">場所を検索</button>
+        </div>
+        <div class='form-group'>
+          <%= f.label :map %>
+          <%= f.text_field :latitude, readonly:"readonly" %>
+          <%= f.text_field :longitude, readonly:"readonly" %>
+          <div id='map'></div>
+        </div>
         <%= f.submit "更新する", class: "btn btn-primary" %>
         <%= link_to "レストランを削除する", restaurant_path(@restaurant), method: :delete,
                              data: { confirm: "本当にこのレストランを削除してよろしいですか？" } %>

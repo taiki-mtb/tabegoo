@@ -13,6 +13,8 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @comment = Comment.new
+    @lat = @restaurant.latitude
+    @lng = @restaurant.longitude
   end
 
   def create
@@ -52,7 +54,9 @@ class RestaurantsController < ApplicationController
   private
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :description, :picture)
+      params.require(:restaurant).permit(
+        :name, :description, :picture, :city_address, :latitude, :longitude
+      )
     end
 
     def correct_user

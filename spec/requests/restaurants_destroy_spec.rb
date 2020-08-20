@@ -13,7 +13,7 @@ RSpec.describe "レストランの削除", type: :request do
       }.to change(Restaurant, :count).by(-1)
       redirect_to root_path
       follow_redirect!
-      expect(response).to render_template('static_pages/home')
+      expect(response).to redirect_to root_path
     end
   end
 
