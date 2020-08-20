@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Sessions", type: :system do
   let!(:user) { create(:user) }
-  let!(:restaurant)  { create(:restaurant) }
+  let!(:restaurant) { create(:restaurant) }
 
   before do
     visit login_path

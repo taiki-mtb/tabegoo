@@ -2,16 +2,17 @@ class CommentsController < ApplicationController
   before_action :logged_in_user
 
   def create
+    @admin_user = User.find_by(admin: true)
     @restaurant = Restaurant.find(params[:restaurant_id])
     @comment = @restaurant.comments.build(user_id: current_user.id,
                                           content: params[:comment][:content])
     if !@restaurant.nil? && @comment.save
       flash[:success] = "コメントを追加しました！"
-      if @user != current_user
-        @user.notifications.create(restaurant_id: @restaurant.id,
-                                   from_user_id: current_user.id,
-                                   content: @comment.content)
-        @user.update_attribute(:notification, true)
+      if current_user != @admin_user
+        @admin_user.notifications.create(restaurant_id: @restaurant.id,
+                                         from_user_id: current_user.id,
+                                         content: @comment.content)
+        @admin_user.update_attribute(:notification, true)
       end
     else
       flash[:danger] = "空のコメントは投稿できません。"
