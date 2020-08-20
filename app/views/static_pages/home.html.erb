@@ -1,7 +1,9 @@
 <center>
   <h1>ポートフォリオです</h1>
   <h2>オススメのお店教えちゃいます！！</h2>
-  <%= link_to "まとばのお勧めはここ!!", restaurant_path(random) %>
+  <% if Restaurant %>
+    <%= link_to "まとばのお勧めはここ!!", restaurant_path(random) %>
+  <% end %>
 </center>
 <div class="container">
   <h3>レストラン一覧</h3>
