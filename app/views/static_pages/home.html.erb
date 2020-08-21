@@ -1,11 +1,20 @@
-<center>
-  <h1>ポートフォリオです</h1>
-  <h2>オススメのお店教えちゃいます！！</h2>
-  <% if Restaurant %>
-    <%= link_to "まとばのお勧めはここ!!", restaurant_path(random) %>
-  <% end %>
-</center>
-<div class="container">
-  <h3>レストラン一覧</h3>
-  <%= render 'shared/feed' %>
-</div>
+<div id="fh5co-portfolio">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <div class="display-tc js-fullheight">
+          <h1>ポートフォリオです</h1>
+          <h2>オススメのお店教えちゃいます！！</h2>
+          <% if Restaurant %>
+            <%= link_to "まとばのお勧めはここ!!", restaurant_path(random) %>
+          <% end %>
+        </div>
+        <h3>レストラン一覧</h3>
+      </div>
+      <div class="col-md-9">
+        <%= render 'shared/feed' %>
+      </div>
+    </div>
+  </div>
+</header>
