@@ -11,11 +11,10 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jquery
-//= require bootstrap
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require_underscore.js
 //= require_gmaps/google
 //= require_googlemap.js
+//= require modernizr-2.6.2.min
+//  require_tree .
