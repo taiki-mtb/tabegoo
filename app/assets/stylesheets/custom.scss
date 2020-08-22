@@ -212,6 +212,18 @@ h2.restaurant-name {
   color: grey;
 }
 
+// レストラン一覧
+
+h3.restaurant-name {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.restaurant-description {
+  margin-top: 10px;
+}
+
 // お気に入り
 .like-btn-unlike {
   color: red;

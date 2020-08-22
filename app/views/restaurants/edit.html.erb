@@ -1,36 +1,38 @@
 <% provide(:title, "レストラン情報の編集") %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <%= form_for(@restaurant) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <div class = 'form-group'>
-          <%= f.label :name %>　<span class="input-need">※必須</span>
-          <%= f.text_field :name, class: 'form-control', id: 'restaurant_name' %>
-        </div>
-        <div class = 'form-group'>
-          <%= f.label :description %>
-          <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'restaurant_description' %>
-        </div>
-        <span class="picture">
-          <%= f.label :picture %>
-          <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'restaurant_picture' %>
-        </span>
-        <div class='form-group'>
-          <%= f.label :address %>
-          <%= f.text_field :city_address, class: "city_address" %>
-          <button id="searchAddressBtn" value="検索" type="button">場所を検索</button>
-        </div>
-        <div class='form-group'>
-          <%= f.label :map %>
-          <%= f.text_field :latitude, readonly:"readonly" %>
-          <%= f.text_field :longitude, readonly:"readonly" %>
-          <div id='map'></div>
-        </div>
-        <%= f.submit "更新する", class: "btn btn-primary" %>
-        <%= link_to "レストランを削除する", restaurant_path(@restaurant), method: :delete,
-                             data: { confirm: "本当にこのレストランを削除してよろしいですか？" } %>
-      <% end %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@restaurant) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class = 'form-group'>
+            <%= f.label :name %>　<span class="input-need">※必須</span>
+            <%= f.text_field :name, class: 'form-control', id: 'restaurant_name' %>
+          </div>
+          <div class = 'form-group'>
+            <%= f.label :description %>
+            <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'restaurant_description' %>
+          </div>
+          <span class="picture">
+            <%= f.label :picture %>
+            <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'restaurant_picture' %>
+          </span>
+          <div class='form-group'>
+            <%= f.label :address %>
+            <%= f.text_field :city_address, class: "city_address" %>
+            <button id="searchAddressBtn" value="検索" type="button">場所を検索</button>
+          </div>
+          <div class='form-group'>
+            <%= f.label :map %>
+            <%= f.text_field :latitude, readonly:"readonly" %>
+            <%= f.text_field :longitude, readonly:"readonly" %>
+            <div id='map'></div>
+          </div>
+          <%= f.submit "更新する", class: "btn btn-primary" %>
+          <%= link_to "レストランを削除する", restaurant_path(@restaurant), method: :delete,
+                               data: { confirm: "本当にこのレストランを削除してよろしいですか？" } %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
