@@ -1,6 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
 // ミックスイン
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -8,74 +5,61 @@
   box-sizing:         border-box;
 }
 
-// 全ページ共通
-body {
-  padding-top: 60px;
+//// ヘッダー ////
+.menu-1 a:hover {
+  text-decoration: none;
+  text-decoration-width: 1px;
 }
 
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
-}
-
-// テキストの見栄え
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-// ヘッダー
-.navbar ul{
-  margin-top: 12px;
-  margin-bottom: 12px;
+// 上下幅
+.fh5co-nav .top-menu {
+  padding: 18px 0;
 }
  #logo {
-  float: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
   img {
-    width: 150px;
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
   }
 }
 
-// フッター
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
+// スマホ用：ヘッダーメニューが横棒三本になるところを境にロゴを拡大
+@media screen and (max-width: 768px) {
+  #logo {
+    img {
+      max-width: 400%;
+      height: auto;
+      box-sizing: border-box;
+    }
+  }
+}
+
+// スマホ閲覧時、横棒三本をページ上部に固定
+.fh5co-nav-toggle {
+  position: fixed;
+}
+
+// ロゴの上下位置調整
+.fh5co-nav #fh5co-logo {
+  font-size: 40px;
+}
+
+//// フッター //// 
+#fh5co-footer {
+  margin-top: 3em;
+  padding: 1em 0;
   border-top: 1px solid #eaeaea;
-  color: #777;
-  small {
-    float: center;
+}
+
+//// ページボディ部 //// 
+#fh5co-portfolio {
+  padding: 0;
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h3 {
+    text-align: left;
   }
 }
 
@@ -139,6 +123,10 @@ input {
 }
 
 .account-edit {
+  margin-top: 20px;
+}
+
+.account-delete {
   margin-top: 20px;
 }
 
@@ -238,6 +226,18 @@ h2.restaurant-name {
 
 .comment-create-at {
   color: grey;
+}
+
+// レストラン一覧
+
+h3.restaurant-name {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.restaurant-description {
+  margin-top: 10px;
 }
 
 // お気に入り
