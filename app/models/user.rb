@@ -53,6 +53,14 @@ class User < ApplicationRecord
     !Favorite.find_by(user_id: id, restaurant_id: restaurant.id).nil?
   end
 
+  def self.from_omniauth(response)
+      User.find_or_create_by(uid: response[:uid], provider: response[:provider]) do |u|
+        u.name = response[:info][:name]
+        u.email = response[:info][:email]
+        u.password = SecureRandom.hex(16)
+      end
+  end
+
   private
 
     def downcase_email

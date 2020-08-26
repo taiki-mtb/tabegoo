@@ -14,6 +14,18 @@ class SessionsController < ApplicationController
     end
   end
 
+  def omniauth  #log users in with omniauth
+      user = User.from_omniauth(request.env['omniauth.auth'])
+      if user.valid?
+          log_in user
+          flash[:success] = "ポートフォリオへようこそ！"
+          redirect_to user_path(user)
+      else
+          flash[:message] = user.errors.full_messages.join(", ")
+          redirect_to new_user_path
+      end
+  end
+
   def destroy
     log_out if logged_in?
     redirect_to root_url
