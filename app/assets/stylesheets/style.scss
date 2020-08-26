@@ -1,7 +1,5 @@
 $font-primary: 'Inconsolata', Arial, sans-serif;
 
-
-
 // Overrides
 $grid-gutter-width: 40px !default; 
 $border-radius-base:  4px !default;
@@ -23,8 +21,6 @@ $brand-bg-color: $brand-white;
 
 $input-border-focus:  $brand-primary !default;
 $form-group-margin-bottom:       30px !default;
-
-
 
 // Mixin
 @mixin translateX($translatex) {
@@ -1458,6 +1454,19 @@ input[type="text"] {
 		}
 	}
 }
+
+.btn-google {
+    margin-top: 15px;
+    background: $brand-white;
+	color: #4285f4;
+	border: 1px solid #ccc !important;
+	&:hover, &:focus, &:active {
+		background: $brand-primary !important;
+		border-color: $brand-primary !important;
+		color: white !important;
+	}
+}
+
 // Form Input Field
 .form-control {
 	box-shadow: none;
@@ -1499,4 +1508,14 @@ input[type="text"] {
 	.js & {
 		opacity: 0;
 	}
+}
+
+.sign-in-or {
+    margin: 20px 0 0 5px;
+    text-align: center;
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #333333;
 }

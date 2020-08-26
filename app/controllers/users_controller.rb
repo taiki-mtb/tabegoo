@@ -25,6 +25,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def omniauth # log users in with omniauth
+    user = User.from_omniauth(request.env['omniauth.auth'])
+    if user.valid?
+      log_in user
+      flash[:success] = "ポートフォリオへようこそ！"
+      redirect_to user_path(user)
+    else
+      flash[:danger] = user.errors.full_messages.join(", ")
+      redirect_to new_user_path
+    end
+  end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -59,11 +71,12 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :sex, :check_in,
+                                   :uid, :provider)
     end
 
     def user_params_update
-      params.require(:user).permit(:name, :email, :sex)
+      params.require(:user).permit(:name, :email, :sex, :check_in)
     end
 
     def correct_user
