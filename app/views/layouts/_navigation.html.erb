@@ -11,16 +11,26 @@
           <ul>
             <% if logged_in? %>
               <% if admin? %>
-                <li><%= link_to "新しいレストランの登録", new_restaurant_path, class: "" %></li>
+                <li><%= link_to "新しいレストランの登録", new_restaurant_path %></li>
               <% end %>
+              <li class="header-link">
+                <%= link_to restaurants_path do %>
+                  <span class="fas fa-store-alt"></span> <span>レストラン</span>
+                <% end %>
+              </li>
               <% if current_user.notification == true %>
                 <li class="new_notification header-link">
               <% else %>
                 <li class="no_notification header-link">
               <% end %>
-              <%= link_to notifications_path do %><span class="fas fa-bell"></span> <span>通知</span><% end %>
+              <%= link_to notifications_path do %>
+                <span class="fas fa-bell"></span> <span>通知</span>
+              <% end %>
               </li>
-              <li class="header-link"><%= link_to favorites_path do %><span class="fas fa-heart"></span> <span>お気に入り</span><% end %>
+              <li class="header-link">
+                <%= link_to favorites_path do %>
+                  <span class="fas fa-heart"></span> <span>お気に入り</span>
+                <% end %>
               </li>
               <li class="has-dropdown">
                 <%= link_to current_user do %>
@@ -33,6 +43,11 @@
                 </ul>
               </li>
             <% else %>
+              <li class="header-link">
+                <%= link_to restaurants_path do %>
+                  <span class="fas fa-store-alt"></span> <span>レストラン</span>
+                <% end %>
+              </li>
               <li class="header-link">
                 <%= link_to signup_path do %><span class="fas fa-user-plus"></span> <span>ユーザー登録</span><% end %>
               </li>

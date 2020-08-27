@@ -24,6 +24,7 @@ ja:
       restaurant:
         id: ID
         name: 名前
+        category: カテゴリー
         description: 説明
         user_id: 作成者のID
         picture: 写真

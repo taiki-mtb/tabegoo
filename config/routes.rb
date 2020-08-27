@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+  get 'categories/edit'
   root 'static_pages#home'
   resources :users
   resources :restaurants do
@@ -6,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :comments,      only: [:create, :destroy]
   resources :notifications, only: :index
+  resources :categories, except: [:new, :show]
   get    :signup,        to: 'users#new'
   get    :login,         to: 'sessions#new'
   post   :login,         to: 'sessions#create'

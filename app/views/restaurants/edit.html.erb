@@ -13,6 +13,13 @@
             <%= f.label :description %>
             <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'restaurant_description' %>
           </div>
+          <div class='form-group'>
+            <%= f.label :category %>
+            <%= f.select :category_id, [
+                                    ["",""], ["居酒屋", 1],["カフェ", 2],["バー", 3],["ラーメン", 4],
+                                    ["エスニック", 5], ["和食", 6], ["洋食", 7], ["カレー", 8]
+                                    ], {}, class: 'form-control', id: 'category_id' %>
+          </div>
           <span class="picture">
             <%= f.label :picture %>
             <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'restaurant_picture' %>

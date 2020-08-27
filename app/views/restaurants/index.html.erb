@@ -1,0 +1,12 @@
+<% provide(:title, 'レストラン一覧') %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <h1>レストラン一覧</h1>
+    <h2>カテゴリー</h2>
+    <%= will_paginate %>
+    <ul class="restaurants">
+      <%= render @restaurants %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>

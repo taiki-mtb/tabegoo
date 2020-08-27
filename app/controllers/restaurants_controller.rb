@@ -17,6 +17,15 @@ class RestaurantsController < ApplicationController
     @lng = @restaurant.longitude
   end
 
+  def index
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @restaurants = @category.restaurants.order(created_at: :desc).paginate(page: params[:page])
+    else
+      @restaurants = Restaurant.paginate(page: params[:page])
+    end
+  end
+
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
@@ -32,6 +41,7 @@ class RestaurantsController < ApplicationController
 
   def update
     if @restaurant.update_attributes(restaurant_params)
+      binding.pry
       flash[:success] = "レストラン情報が更新されました！"
       redirect_to @restaurant
     else
@@ -55,7 +65,7 @@ class RestaurantsController < ApplicationController
 
     def restaurant_params
       params.require(:restaurant).permit(
-        :name, :description, :picture, :city_address, :latitude, :longitude
+        :name, :description, :picture, :city_address, :latitude, :longitude, :category_id
       )
     end
 
