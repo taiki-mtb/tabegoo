@@ -5,7 +5,8 @@ FactoryBot.define do
     password { "foobar" }
     password_confirmation { "foobar" }
     sex { "男性" }
-
+    uid {"1"}
+    provider {"google"}
     trait :admin do
       admin { true }
     end

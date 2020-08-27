@@ -74,6 +74,30 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "パスワード(確認)とパスワードの入力が一致しません"
       end
     end
+
+    context "Googleアカウントを利用したユーザー登録処理" do
+      before do
+        OmniAuth.config.mock_auth[:google] = nil
+        Rails.application.env_config['omniauth.auth'] = google_mock
+        visit root_path
+        click_link "ユーザー登録"
+      end
+
+      it "サインアップするとユーザーが増える" do
+        expect{
+          click_button "Googleアカウントで登録する"
+        }.to change(User, :count).by(1)
+      end
+
+      it "すでに連携されたユーザーがサインアップしようとするとユーザーは増えない" do
+        click_button "Googleアカウントで登録する"
+        click_link "ログアウト"
+        click_link "ユーザー登録"
+        expect{
+          click_button "Googleアカウントで登録する"
+        }.not_to change(User, :count)
+      end
+    end
   end
 
   describe "プロフィール編集ページ" do
