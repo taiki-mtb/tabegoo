@@ -21,6 +21,8 @@
           </div>
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>
         <% end %>
+        <p class="sign-in-or">もしくは...</p>
+        <%= button_to "Googleアカウントでログインする", '/auth/google', class: 'btn btn-google' %>
         <br>ユーザー登録されていない方は<%= link_to 'こちら', signup_path %><br>
         パスワードをお忘れの方は<%= link_to 'こちら', '#' %>
       </div>

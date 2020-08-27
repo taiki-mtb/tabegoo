@@ -18,6 +18,7 @@ ja:
         password: パスワード
         password_confirmation: パスワード(確認)
         sex: 性別
+        check_in: チェックイン日
         created_at: 登録日時
         updated_at: 更新日時
       restaurant:
