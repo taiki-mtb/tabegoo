@@ -19,10 +19,9 @@ class RestaurantsController < ApplicationController
 
   def index
     if params[:category_id]
-      @category = Category.find(params[:category_id])
-      @restaurants = @category.restaurants.order(created_at: :desc).paginate(page: params[:page])
+      @restaurants = Restaurant.where(category_id: "#{params[:category_id]}")
     else
-      @restaurants = Restaurant.paginate(page: params[:page])
+      @restaurants = Restaurant.all.order(created_at: :desc)
     end
   end
 
@@ -41,7 +40,6 @@ class RestaurantsController < ApplicationController
 
   def update
     if @restaurant.update_attributes(restaurant_params)
-      binding.pry
       flash[:success] = "レストラン情報が更新されました！"
       redirect_to @restaurant
     else

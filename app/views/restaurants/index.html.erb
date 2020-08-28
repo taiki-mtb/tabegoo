@@ -2,11 +2,18 @@
 <div id="fh5co-portfolio">
   <div class="container">
     <h1>レストラン一覧</h1>
-    <h2>カテゴリー</h2>
-    <%= will_paginate %>
+    <%= form_with  model: @restaurant, method: :get, local: true do |f| %>
+      <div class='form-group'>
+        <%= f.label :カテゴリー %>
+        <%= f.select :category_id, [
+                                ["全て",""], ["居酒屋", 1],["カフェ", 2],["バー", 3],["ラーメン", 4],
+                                ["エスニック", 5], ["和食", 6], ["洋食", 7], ["カレー", 8]
+                                ], {}, class: 'form-control', id: 'category_id' %>
+        <%= f.submit "カテゴリーで検索", class: "btn btn-primary" %>
+      </div>
+    <% end %>
     <ul class="restaurants">
       <%= render @restaurants %>
     </ul>
-    <%= will_paginate %>
   </div>
 </div>
