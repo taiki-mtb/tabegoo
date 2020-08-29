@@ -14,6 +14,13 @@ class Restaurant < ApplicationRecord
     Comment.where("restaurant_id = ?", restaurant_id)
   end
 
+  #def related(category_id)
+  #  display_limit = 8
+  #  Restaurant.where("category_id = ?", category_id).
+  #  limit(display_limit)
+  #end
+
+
   private
 
     def picture_size
