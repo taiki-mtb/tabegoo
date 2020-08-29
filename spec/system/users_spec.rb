@@ -84,7 +84,7 @@ RSpec.describe "Users", type: :system do
       end
 
       it "サインアップするとユーザーが増える" do
-        expect{
+        expect {
           click_button "Googleアカウントで登録する"
         }.to change(User, :count).by(1)
       end
@@ -93,7 +93,7 @@ RSpec.describe "Users", type: :system do
         click_button "Googleアカウントで登録する"
         click_link "ログアウト"
         click_link "ユーザー登録"
-        expect{
+        expect {
           click_button "Googleアカウントで登録する"
         }.not_to change(User, :count)
       end

@@ -228,6 +228,57 @@ h2.restaurant-name {
   color: grey;
 }
 
+
+// 関連レストラン
+  .restaurantsContent .restaurantBox .restaurantImage {
+    img {
+      width: auto;
+      height: 130px;
+    }
+  }
+
+.restaurantBox {
+    height: auto;
+    display: block;
+    cursor: pointer;
+    margin-bottom: 80px;
+    margin-bottom: 30px;
+}
+
+.related_images img {
+  width: 70%;
+  height: 70%
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+img {
+  object-fit: contain;
+  width: 20vw;
+  height: 20vw;
+
+}
+.owl-item {
+  opacity: 0.3;
+  transition: 1s ease-out;
+}
+.owl-item.center {
+  opacity: 1;
+}
+
+.owl-next {
+  margin: 0 100px !important;
+}
+.owl-prev {
+  margin: 0 100px !important;
+}
+
 // レストラン一覧
 
 h3.restaurant-name {

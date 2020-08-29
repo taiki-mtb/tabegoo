@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_014458) do
+ActiveRecord::Schema.define(version: 2020_08_27_164917) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "restaurant_id"
@@ -43,7 +49,6 @@ ActiveRecord::Schema.define(version: 2020_08_26_014458) do
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "category"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_014458) do
     t.float "longitude", limit: 53
     t.string "city_address"
     t.string "picture"
+    t.integer "category_id"
     t.index ["user_id", "created_at"], name: "index_restaurants_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end

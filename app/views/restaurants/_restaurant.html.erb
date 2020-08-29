@@ -12,12 +12,5 @@
       <h3 class="name"><%= link_to restaurant.name,  restaurant_path(restaurant) %></h3>
       <div class="description"><%= restaurant.description %></div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="restaurant-created-at">
-          <%= time_ago_in_words(restaurant.created_at) %>前に投稿
-        </div>
-      </div>
-    </div>
   </div>
 </li>

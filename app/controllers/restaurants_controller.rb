@@ -15,6 +15,17 @@ class RestaurantsController < ApplicationController
     @comment = Comment.new
     @lat = @restaurant.latitude
     @lng = @restaurant.longitude
+    @category = @restaurant.category_id
+    @current_id = @restaurant.id
+    @related_restaurants = Restaurant.where(category_id: @category).where.not(id: @current_id).all
+  end
+
+  def index
+    if params[:category_id]
+      @restaurants = Restaurant.where(category_id: "#{params[:category_id]}")
+    else
+      @restaurants = Restaurant.all.order(created_at: :desc)
+    end
   end
 
   def create
@@ -55,7 +66,7 @@ class RestaurantsController < ApplicationController
 
     def restaurant_params
       params.require(:restaurant).permit(
-        :name, :description, :picture, :city_address, :latitude, :longitude
+        :name, :description, :picture, :city_address, :latitude, :longitude, :category_id
       )
     end
 

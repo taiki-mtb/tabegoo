@@ -26,6 +26,27 @@
           <%= render "comments/new" %>
         </div>
       </div>
+      <div class="row restaurantsContent">
+        <div class="col-xs-12">
+          <div class="page-header">
+            <h4>こちらもお勧め！！</h4>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <% @related_restaurants.each do |restaurant| %>
+            <div class="col-xs-4 clearfix owl-carousel owl-example owl-theme">
+              <%= link_to restaurant_path(restaurant.id) do %>
+                <div class="related_images">
+                  <%= image_tag restaurant.picture.url%>
+                </div>
+                <div class="restaurantCaption clearfix">
+                  <h5><%= restaurant.name %></h5>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -37,4 +58,27 @@
         document.getElementById('map'), {center: restaurant, zoom: 15});
     var marker = new google.maps.Marker({position: restaurant, map: map});
   }
+</script>
+
+<script>
+  $(document).ready(function() {
+    $("#owl-example").owlCarousel();
+  });
+</script>
+
+<script>
+$(document).ready(function () {
+  $('.owl-carousel').owlCarousel({
+    center: true,
+    items: 3,
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      600: {
+        items: 1
+      }
+    }
+  });
+});
 </script>
