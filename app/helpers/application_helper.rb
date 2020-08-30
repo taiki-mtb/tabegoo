@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+
   def full_title(page_title = '')
     base_title = 'my portfolio'
     if page_title.blank?

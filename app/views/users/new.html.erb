@@ -22,9 +22,13 @@
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, class: 'form-control', id: 'user_password_confirmation' %>
           </div>
+          <div class = 'form-group'>
+            <%= f.label :sex %>
+            <%= f.select :sex, [["",""], ["女性","女性"], ["男性","男性"]], {}, class: 'form-control', id: 'user_sex' %>
+          </div>
           <div class='form-group'>
             <%= f.label :check_in %>
-            <%= f.password_field :check_in, class: 'form-control', id: 'check_in' %>
+            <%= f.text_field :check_in, class: 'form-control', id: 'check_in' %>
           </div>
         <%= f.submit nil, class: 'btn btn-primary' %>
         <% end %>
