@@ -116,12 +116,12 @@ RSpec.describe "Users", type: :system do
     it "有効なプロフィール更新を行うと、更新成功のフラッシュが表示されること" do
       fill_in "ユーザー名", with: "Edit Example User"
       fill_in "メールアドレス", with: "edit-user@example.com"
-      fill_in "性別", with: "編集：男性"
+      select "男性", from: "user_sex"
       click_button "更新する"
       expect(page).to have_content "プロフィールが更新されました！"
       expect(user.reload.name).to eq "Edit Example User"
       expect(user.reload.email).to eq "edit-user@example.com"
-      expect(user.reload.sex).to eq "編集：男性"
+      expect(user.reload.sex).to eq "男性"
     end
 
     it "無効なプロフィール更新をしようとすると、適切なエラーメッセージが表示されること" do
