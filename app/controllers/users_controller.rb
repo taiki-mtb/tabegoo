@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
 

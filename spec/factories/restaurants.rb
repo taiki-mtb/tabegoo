@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :restaurant do
     name { "レストラン" }
     description { "オススメのレストランです" }
-    category_id { "1" }
+    category_id { 1 }
     created_at { Time.current }
     association :category
   end

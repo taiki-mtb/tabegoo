@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   delete :logout,        to: 'sessions#destroy'
   get    :favorites,     to: 'favorites#index'
   get    '/auth/:provider/callback' => 'users#omniauth'
+  post   :'/guest',      to: 'guest_sessions#create' 
 end
