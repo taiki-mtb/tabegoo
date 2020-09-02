@@ -51,34 +51,3 @@
   </div>
 </div>
 
-<script>
-  function initMap(){
-    var restaurant = {lat: <%= @lat %>, lng: <%= @lng %>};
-    var map = new google.maps.Map(
-        document.getElementById('map'), {center: restaurant, zoom: 15});
-    var marker = new google.maps.Marker({position: restaurant, map: map});
-  }
-</script>
-
-<script>
-  $(document).ready(function() {
-    $("#owl-example").owlCarousel();
-  });
-</script>
-
-<script>
-$(document).ready(function () {
-  $('.owl-carousel').owlCarousel({
-    center: true,
-    items: 3,
-    loop: true,
-    margin: 10,
-    nav: true,
-    responsive: {
-      600: {
-        items: 1
-      }
-    }
-  });
-});
-</script>
