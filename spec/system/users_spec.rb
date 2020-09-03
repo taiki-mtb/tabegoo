@@ -137,9 +137,7 @@ RSpec.describe "Users", type: :system do
     context "アカウント削除処理", js: true do
       it "正しく削除できること" do
         click_link "アカウントを削除する"
-        page.accept_confirm do
-          click_on :delete_button
-        end
+        page.driver.browser.switch_to.alert.accept
         expect(page).to have_content "自分のアカウントを削除しました"
       end
     end
@@ -183,29 +181,17 @@ RSpec.describe "Users", type: :system do
         expect(user.favorite?(restaurant)).to be_falsey
       end
 
-      # it "トップページからお気に入り登録/解除ができること", js: true do
-      #   visit root_path
-      #   link = find('.like')
-      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
-      #   link.click
-      #   link = find('.unlike')
-      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
-      #   link.click
-      #   link = find('.like')
-      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
-      # end
-
-      # it "料理個別ページからお気に入り登録/解除ができること", js: true do
-      #   visit restaurant_path(restaurant)
-      #   link = find('.like')
-      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
-      #   link.click
-      #   link = find('.unlike')
-      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
-      #   link.click
-      #   link = find('.like')
-      #   expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
-      # end
+      it "レストラン個別ページからお気に入り登録/解除ができること", js: true do
+        visit restaurant_path(restaurant)
+        link = find('.like')
+        expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+        link.click
+        link = find('.unlike')
+        expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+        link.click
+        link = find('.like')
+        expect(link[:href]).to include restaurant_favorites_path(restaurant.id)
+      end
 
       it "お気に入り一覧ページが期待通り表示されること" do
         visit favorites_path
