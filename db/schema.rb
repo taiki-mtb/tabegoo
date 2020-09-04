@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_164917) do
+ActiveRecord::Schema.define(version: 2020_09_04_081726) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_164917) do
     t.string "city_address"
     t.string "picture"
     t.integer "category_id"
+    t.json "images"
     t.index ["user_id", "created_at"], name: "index_restaurants_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end

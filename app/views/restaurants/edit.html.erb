@@ -20,10 +20,10 @@
                                     ["エスニック", 5], ["和食", 6], ["洋食", 7], ["カレー", 8]
                                     ], {}, class: 'form-control', id: 'category_id' %>
           </div>
-          <span class="picture">
-            <%= f.label :picture %>
-            <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'restaurant_picture' %>
-          </span>
+          <div class='image'>
+            <%= f.label :images %>
+            <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/png', class: 'form-control', id: 'restaurant_image' %>
+          </div>
           <div class='form-group'>
             <%= f.label :address %>
             <%= f.text_field :city_address, class: "city_address" %>

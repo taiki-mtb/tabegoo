@@ -5,8 +5,11 @@
     <div class="row">
       <div class="col-md-4">
         <span class="picture">
-          <%= link_to((image_tag @restaurant.picture.thumb400.url), 
-          restaurant_path(@restaurant.id), class: 'restaurant-picture') if @restaurant.picture.url.present? %>
+          <% if @restaurant.images.present? %>
+            <% @restaurant.images.each do |image| %>
+              <%= image_tag image.url, class: "restaurant-image" %>
+            <% end %>
+          <% end %>
         </span>
         <%= render 'users/favorite_form' %> 
       </div>
@@ -37,7 +40,7 @@
             <div class="col-xs-4 clearfix owl-carousel owl-example owl-theme">
               <%= link_to restaurant_path(restaurant.id) do %>
                 <div class="related_images">
-                  <%= image_tag restaurant.picture.url%>
+                  <%= image_tag restaurant.images[0].url%>
                 </div>
                 <div class="restaurantCaption clearfix">
                   <h5><%= restaurant.name %></h5>
