@@ -13,8 +13,9 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_underscore.js
-//= require_gmaps/google
-//= require_googlemap.js
+//= require underscore.js
+//= require gmaps/google
+//= require googlemap.js
 //= require modernizr-2.6.2.min
+//= require owl.carousel.min.js
 //  require_tree .
