@@ -29,6 +29,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
+    Rails.logger.debug restaurant_params
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       flash[:success] = "レストランが登録されました！"
@@ -66,7 +67,7 @@ class RestaurantsController < ApplicationController
 
     def restaurant_params
       params.require(:restaurant).permit(
-        :name, :description, {images: []}, :city_address, :latitude, :longitude, :category_id
+        :name, :description, { images: [] }, :city_address, :latitude, :longitude, :category_id
       )
     end
 

@@ -11,6 +11,7 @@
             <%= link_to "編集", edit_restaurant_path(@restaurant), class: 'edit-restaurant' %>　
           <% end %>
         </div>
+        <%= render 'users/favorite_form' %> 
         <h4><%= @restaurant.description %></h4>
         <div class="gmap" id="map"></div>      
         <div class="comment">

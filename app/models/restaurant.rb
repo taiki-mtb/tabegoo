@@ -6,7 +6,7 @@ class Restaurant < ApplicationRecord
   mount_uploaders :images, PictureUploader
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, length: { maximum: 140 }
-  validate  :picture_size
+  validate  :images_size
   geocoded_by :city_address
   after_validation :geocode, if: :city_address_changed?
 
@@ -16,7 +16,7 @@ class Restaurant < ApplicationRecord
 
   private
 
-    def picture_size
+    def images_size
       if images.size > 5.megabytes
         errors.add(:images, "：5MBより大きい画像はアップロードできません。")
       end
