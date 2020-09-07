@@ -3,20 +3,12 @@
 <div id="fh5co-portfolio">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <span class="picture">
-          <%= link_to((image_tag @restaurant.picture.thumb400.url), 
-          restaurant_path(@restaurant.id), class: 'restaurant-picture') if @restaurant.picture.url.present? %>
-        </span>
-        <%= render 'users/favorite_form' %> 
-      </div>
-      <div class="col-md-8">    
+      <%= render "restaurant_images", restaurant: @restaurant %>
+      <div class="col-md-7">    
         <h2 class="restaurant-name"><%= @restaurant.name %></h2>
         <div class="change-restaurant">
-          <% if logged_in? %>
-            <% if admin? %>
-              <%= link_to "編集", edit_restaurant_path(@restaurant), class: 'edit-restaurant' %>　
-            <% end %>
+          <% if logged_in? && admin? %>
+            <%= link_to "編集", edit_restaurant_path(@restaurant), class: 'edit-restaurant' %>　
           <% end %>
         </div>
         <h4><%= @restaurant.description %></h4>
@@ -32,20 +24,7 @@
             <h4>こちらもお勧め！！</h4>
           </div>
         </div>
-        <div class="col-xs-12">
-          <% @related_restaurants.each do |restaurant| %>
-            <div class="col-xs-4 clearfix owl-carousel owl-example owl-theme">
-              <%= link_to restaurant_path(restaurant.id) do %>
-                <div class="related_images">
-                  <%= image_tag restaurant.picture.url%>
-                </div>
-                <div class="restaurantCaption clearfix">
-                  <h5><%= restaurant.name %></h5>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+        <%= render "related_restaurants", restaurant: @restaurant %>
       </div>
     </div>
   </div>

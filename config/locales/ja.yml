@@ -27,7 +27,7 @@ ja:
         category: カテゴリー
         description: 説明
         user_id: 作成者のID
-        picture: 写真
+        images: 写真
         address: 住所
         map: 地図
       comment:
