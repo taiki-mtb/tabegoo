@@ -7,8 +7,10 @@ var gMarkerCenter = null;
 
 function initMap(){
  // 緯度経度から地図を表示
-  var lat = $('#restaurant_latitude').val();
-  var lng = $('#restaurant_longitude').val();
+  // var lat = $('#restaurant_latitude').val();
+  // var lng = $('#restaurant_longitude').val();
+  var lat = 35.6828387
+  var lng = 139.7594549
 // 座標を設定
   var myLatLng = new google.maps.LatLng(lat, lng)
   var mapOptions = {
