@@ -12,13 +12,15 @@
 Capybara.register_driver :selenium_container do |app|
   url = ENV["SELENIUM_DRIVER_URL"]
   caps = ::Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: [
-      'headless',
-      'no-sandbox',
-      'disable-gpu',
-      'window-size=1400,1400'
-    ],
-    w3c: false}
+    chromeOptions: {
+      args: [
+        'headless',
+        'no-sandbox',
+        'disable-gpu',
+        'window-size=1400,1400'
+      ],
+      w3c: false
+    }
   )
   Capybara::Selenium::Driver.new(app, browser: :remote, url: url, desired_capabilities: caps)
 end
@@ -32,11 +34,11 @@ RSpec.configure do |config|
 
   config.before(:each, type: :system, js: true) do
     driven_by :selenium_container
-    
+
     Capybara.server_host = IPSocket.getaddress('app')
     Capybara.server_port = 3002
     Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
-    
+
     # if ENV["SELENIUM_DRIVER_URL"].present?
     #   driven_by :selenium, using: :chrome, options: {
     #     browser: :remote,

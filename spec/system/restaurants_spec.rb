@@ -107,7 +107,7 @@ RSpec.describe "Restaurants", type: :system do
     # end
 
     context "レストランの更新処理" do
-      #it "有効な更新" do
+      # it "有効な更新" do
       #  fill_in "名前", with: "編集：レストラン2"
       #  fill_in "説明", with: "編集：冬に行きたい、身体が温まるレストランです"
       #  select "居酒屋", from: "category_id"
@@ -117,7 +117,7 @@ RSpec.describe "Restaurants", type: :system do
       #  expect(restaurant.reload.name).to eq "編集：レストラン2"
       #  expect(restaurant.reload.description).to eq "編集：冬に行きたい、身体が温まるレストランです"
       #  expect(restaurant.reload.picture.url).to include "test_restaurant2.jpg"
-      #end
+      # end
 
       it "無効な更新" do
         fill_in "名前", with: ""
