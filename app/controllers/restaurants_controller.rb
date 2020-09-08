@@ -8,6 +8,8 @@ class RestaurantsController < ApplicationController
       flash[:danger] = "管理人しか作成できません"
       redirect_to root_url
     end
+    gon.restaurant_lat = 35.706721
+    gon.restaurant_lng = 139.7992916
   end
 
   def show
@@ -18,6 +20,8 @@ class RestaurantsController < ApplicationController
     @category = @restaurant.category_id
     @current_id = @restaurant.id
     @related_restaurants = Restaurant.where(category_id: @category).where.not(id: @current_id).all
+    gon.restaurant_lat = @restaurant.latitude
+    gon.restaurant_lng = @restaurant.longitude
   end
 
   def index
@@ -40,6 +44,9 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
+    @restaurant = Restaurant.find(params[:id])
+    gon.restaurant_lat = @restaurant.latitude
+    gon.restaurant_lng = @restaurant.longitude
   end
 
   def update
