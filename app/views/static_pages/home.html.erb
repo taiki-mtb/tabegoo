@@ -4,12 +4,14 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
         <div class="display-tc js-fullheight">
-          <h1>ポートフォリオです</h1>
-          <h2>オススメのお店教えちゃいます！！</h2>
-          <h2>(仮)</h2>
-          <% if Restaurant %>
-            <%= link_to "今日のお勧めはここ!!", restaurant_path(random) %>
-          <% end %>
+          <%= image_tag "/images/tabeGoo!_logo.png", :alt => "たべGoo!-logo",
+          id: 'logo' %>
+          <h2>マネージャーまとばの</br>オススメのお店教えちゃいます！！</h2>
+          <div class="recomend-box">
+            <% if Restaurant %>
+              <%= link_to "今日のお勧めはここ!!", restaurant_path(random), class: "recomend" %>
+            <% end %>
+          </div>
         </div>
         <h3>レストラン一覧</h3>
       </div>
