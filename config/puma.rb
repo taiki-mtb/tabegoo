@@ -9,7 +9,7 @@ bind "unix://#{app_root}/tmp/sockets/puma.sock"
 
 rails_env = ENV.fetch("RAILS_ENV") { "production" }
 if rails_env == "production"
-　daemonize true
-　stdout_redirect "/var/log/puma/puma.stdout.log", "/var/log/puma/puma.stderr.log", true
+  daemonize true
+  stdout_redirect "/var/log/puma/puma.stdout.log", "/var/log/puma/puma.stderr.log", true
 end
 environment rails_env
