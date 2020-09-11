@@ -1,4 +1,4 @@
-User.create!(name:  "山田 太郎",
+User.create!(name:  "マネージャー　まとば",
             email: "sample@example.com",
             password:              "foobar",
             password_confirmation: "foobar",
@@ -13,3 +13,11 @@ User.create!(name:  "山田 太郎",
               password:              password,
               password_confirmation: password)
 end
+
+10.times do |n|
+  Restaurant.create!(name: "レストランexample",
+               description: "冬に行きたい、身体が温まるレストランです",
+               category_id: 1)
+end
+
+Category.create!(name: "居酒屋")
