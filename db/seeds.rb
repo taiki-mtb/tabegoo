@@ -20,4 +20,3 @@ Restaurant.create!(name: "レストランexample",
                description: "冬に行きたい、身体が温まるレストランです",
                category_id: 1,
                association: category)
-end
