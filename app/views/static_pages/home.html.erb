@@ -8,7 +8,9 @@
           id: 'logo' %>
           <h2>マネージャーまとばの</br>オススメのお店教えちゃいます！！</h2>
           <div class="recomend-box">
-
+            <% if Restaurant %>
+              <%= link_to "今日のお勧めはここ!!", restaurant_path(random), class: "recomend" %>
+            <% end %>
           </div>
         </div>
         <h3>レストラン一覧</h3>
