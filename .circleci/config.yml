@@ -20,7 +20,7 @@ jobs:
       - run:
         name: Setup database
         command: |
-          docker-compose exec app bash -c 'yes n | 
+          docker-compose run app rails db:create db:migrate
       - run:
         name: Run rspec
         command: docker-compose exec app rspec
