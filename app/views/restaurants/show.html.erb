@@ -13,6 +13,7 @@
         </div>
         <%= render 'users/favorite_form' %> 
         <h4><%= @restaurant.description %></h4>
+        <h5><%= "住所：#{@restaurant.city_address}" %></h5>
         <div class="gmap" id="map"></div>      
         <div class="comment">
           <%= render "comments/feed_comments" %>
