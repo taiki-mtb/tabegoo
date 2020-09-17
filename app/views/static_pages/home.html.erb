@@ -3,9 +3,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <div class="display-tc js-fullheight">
+        <div class="display-tc top-space">
           <%= image_tag "/images/tabeGoo!_logo.png", :alt => "たべGoo!-logo",
-          id: 'logo', class: "animate__animated animate__jackInTheBox" %>
+          id: 'top-logo', class: "animate__animated animate__jackInTheBox" %>
           <h2>マネージャーまとばの</br>オススメのお店教えちゃいます！！</h2>
             <div class="recomend-box">
               <% if Restaurant %>
@@ -13,9 +13,9 @@
               <% end %>
             </div>
         </div>
-        <h3>レストラン一覧</h3>
       </div>
       <div class="col-md-9">
+        <h3>レストラン一覧</h3>
         <%= render 'shared/feed' %>
       </div>
     </div>
