@@ -5,11 +5,11 @@
       <div class="col-md-8 col-md-offset-2 text-center">
         <div class="display-tc js-fullheight">
           <%= image_tag "/images/tabeGoo!_logo.png", :alt => "たべGoo!-logo",
-          id: 'logo' %>
+          id: 'logo', class: "animate__animated animate__jackInTheBox" %>
           <h2>マネージャーまとばの</br>オススメのお店教えちゃいます！！</h2>
             <div class="recomend-box">
               <% if Restaurant %>
-                <%= link_to "今日のお勧めはここ!!", restaurant_path(random), class: "recomend" %>
+                <%= link_to "まとばのお勧めに”たべGoo”!!", restaurant_path(random), class: "recomend" %>
               <% end %>
             </div>
         </div>

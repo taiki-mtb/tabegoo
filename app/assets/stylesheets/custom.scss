@@ -237,6 +237,7 @@ h2.restaurant-name {
   float: left;
   margin-right: 5px;
   transition: 0.5s ;
+  padding-top: 10px;
 }
 
 .image-size-small:hover {
@@ -269,24 +270,26 @@ h2.restaurant-name {
   height: 70%
 }
 
-
 ul {
   list-style: none;
   padding: 0;
 }
+
 li {
   list-style: none;
 }
+
 img {
   object-fit: contain;
   width: 20vw;
   height: 20vw;
-
 }
+
 .owl-item {
   opacity: 0.3;
   transition: 1s ease-out;
 }
+
 .owl-item.center {
   opacity: 1;
 }
@@ -294,6 +297,7 @@ img {
 .owl-next {
   margin: 0 100px !important;
 }
+
 .owl-prev {
   margin: 0 100px !important;
 }
@@ -366,4 +370,8 @@ li.new_notification > a > span {
 
 .recomend {
   font-size: 30px;
+}
+
+.animate__animated.animate__rollIn {
+  --animate-duration: 3s;
 }
