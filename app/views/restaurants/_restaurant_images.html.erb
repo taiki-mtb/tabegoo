@@ -3,7 +3,7 @@
     <div class="carousel-inner">
       <% restaurant.images.each_with_index do |image, i| %>
         <div class="item <%= 'active' if i.zero? %>" data-thumb="<%= i %>">
-           <%= image_tag image.url, class: "image-size" %>
+           <%= image_tag image.thumb400.url, class: "image-size" %>
         </div>
       <% end %>
     </div>
@@ -13,7 +13,7 @@
       <div class="carousel-inner">
         <% restaurant.images.each_with_index do |image, i| %>
           <div data-target="#carousel" data-slide-to="<%= i %>" class="thumb">
-            <%= image_tag image.url, class: "image-size-small" %>
+            <%= image_tag image.thumb100.url, class: "image-size-small" %>
           </div>
         <% end %>
       </div>

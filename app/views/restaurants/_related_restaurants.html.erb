@@ -4,7 +4,7 @@
         <%= link_to restaurant_path(restaurant.id) do %>
           <div class="related_images">
             <% if restaurant.images? %>
-              <%= image_tag restaurant.images[0].url %>
+              <%= image_tag restaurant.images[0].thumb200.url %>
             <% end %>
           </div>
           <div class="restaurantCaption clearfix">
