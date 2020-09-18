@@ -5,3 +5,7 @@ var loc = location.href;
 var file = loc.substring(loc.lastIndexOf("/")+1,loc.length);
 // 現在のURLリンクを持つaタグの親要素(liタグ)にactiveクラスを追加(設定以下のdropdownは除外)
 $('.header-link').children('a[href$="'+file+'"]').parent().addClass('active');
+$('.recomend-box').hover( 
+function(){$(this).addClass('animate__animated animate__shakeX');},  
+function(){$(this).removeClass('animate__animated animate__shakeX');}
+);
