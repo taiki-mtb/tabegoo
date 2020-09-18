@@ -17,7 +17,7 @@ RSpec.describe "StaticPages", type: :system do
     context "管理者ユーザーの場合" do
       it "「新しいお店の登録」リンクが表示されること" do
         login_for_system(admin_user)
-        expect(page).to have_link "新しいレストランの登録", href: new_restaurant_path
+        expect(page).to have_link "新しいお店の登録", href: new_restaurant_path
       end
     end
 
