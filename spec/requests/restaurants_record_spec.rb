@@ -16,22 +16,11 @@ RSpec.describe "レストラン登録", type: :request do
       expect(response).to render_template('restaurants/new')
     end
 
-    it "有効なデータで登録できること" do
-      expect {
-        post restaurants_path, params: { restaurant: { name: "レストラン",
-                                                       description: "オススメのレストランです",
-                                                       picture: picture,
-                                                       category_id: 1 } }
-      }.to change(Restaurant, :count).by(1)
-      follow_redirect!
-      expect(response).to render_template('restaurants/show')
-    end
-
     it "無効なデータでは登録できないこと" do
       expect {
         post restaurants_path, params: { restaurant: { name: "",
                                                        description: "オススメのレストランです",
-                                                       picture: picture } }
+                                                       images: picture } }
       }.not_to change(Restaurant, :count)
       expect(response).to render_template('restaurants/new')
     end

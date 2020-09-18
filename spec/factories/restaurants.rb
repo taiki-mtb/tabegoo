@@ -5,6 +5,7 @@ FactoryBot.define do
     category_id { 1 }
     created_at { Time.current }
     association :category
+    city_address { "浅草一丁目" }
   end
   trait :yesterday do
     created_at { 1.day.ago }
