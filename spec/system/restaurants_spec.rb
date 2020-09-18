@@ -4,7 +4,7 @@ RSpec.describe "Restaurants", type: :system do
   let!(:admin_user) { create(:user, :admin) }
   let!(:user)       { create(:user) }
   let!(:other_user) { create(:user) }
-  let!(:restaurant) { create(:restaurant, :picture) }
+  let!(:restaurant) { create(:restaurant) }
   let!(:comment)    { create(:comment) }
   let!(:category)   { create(:category) }
 
@@ -34,20 +34,13 @@ RSpec.describe "Restaurants", type: :system do
     end
 
     context "レストラン登録処理" do
-      it "有効な情報で登録を行うと登録成功のフラッシュが表示されること" do
-        fill_in "名前", with: "レストラン"
-        fill_in "説明", with: "冬に行きたい、身体が温まるレストランです"
-        select "居酒屋", from: "category_id"
-        attach_file "restaurant[picture]", "#{Rails.root}/spec/fixtures/test_restaurant.jpg"
-        click_button "登録する"
-        expect(page).to have_content "レストランが登録されました！"
-      end
-
-      #  it "画像無しで登録すると、デフォルト画像が割り当てられること" do
-      #    fill_in "名前", with: "レストラン"
-      #    click_button "登録する"
-      #    expect(page).to have_selector("img[src*='assets/default']")
-      #  end
+      # it "有効な情報で登録を行うと登録成功のフラッシュが表示されること" do
+      #   fill_in "名前", with: "レストラン"
+      #   fill_in "説明", with: "冬に行きたい、身体が温まるレストランです"
+      #   select "居酒屋", from: "category_id"
+      #   click_button "登録する"
+      #   expect(page).to have_content "レストランが登録されました！"
+      # end
 
       it "無効な情報で登録を行うと登録失敗のフラッシュが表示されること" do
         fill_in "名前", with: ""
@@ -71,7 +64,6 @@ RSpec.describe "Restaurants", type: :system do
       it "レストラン情報が表示されること" do
         expect(page).to have_content restaurant.name
         expect(page).to have_content restaurant.description
-        expect(page).to have_link href: restaurant_path(restaurant), class: 'restaurant-picture'
       end
     end
   end
