@@ -13,7 +13,7 @@
 
 // 上下幅
 .fh5co-nav .top-menu {
-  padding: 18px 0;
+  padding-top: 18px;
 }
  #logo {
   img {
@@ -28,7 +28,7 @@
   #logo {
     img {
       max-width: 400%;
-      height: auto;
+      height: 100%;
       box-sizing: border-box;
     }
   }
@@ -41,7 +41,8 @@
 
 // ロゴの上下位置調整
 .fh5co-nav #fh5co-logo {
-  font-size: 20px;
+  font-size: 10px;
+  margin-top: -10px;
 }
 
 //// フッター //// 
@@ -203,7 +204,7 @@ h2.restaurant-name {
 
 .restaurant-picture img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -234,9 +235,9 @@ h2.restaurant-name {
   height: 40%;
   cursor: pointer;
   float: left;
-  margin-top: 10px;
   margin-right: 5px;
   transition: 0.5s ;
+  padding-top: 10px;
 }
 
 .image-size-small:hover {
@@ -269,24 +270,26 @@ h2.restaurant-name {
   height: 70%
 }
 
-
 ul {
   list-style: none;
   padding: 0;
 }
+
 li {
   list-style: none;
 }
+
 img {
   object-fit: contain;
   width: 20vw;
   height: 20vw;
-
 }
+
 .owl-item {
   opacity: 0.3;
   transition: 1s ease-out;
 }
+
 .owl-item.center {
   opacity: 1;
 }
@@ -294,6 +297,7 @@ img {
 .owl-next {
   margin: 0 100px !important;
 }
+
 .owl-prev {
   margin: 0 100px !important;
 }
@@ -366,4 +370,17 @@ li.new_notification > a > span {
 
 .recomend {
   font-size: 30px;
+}
+
+.animate__animated.animate__rollIn {
+  --animate-duration: 3s;
+}
+
+.top-space {
+  padding-bottom: 180px;
+  padding-top: 30px;
+}
+
+#top-logo {
+  width: 50%;
 }

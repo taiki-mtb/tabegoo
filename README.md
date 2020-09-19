@@ -1,24 +1,41 @@
-# README
+# たべGoo!!
+浅草にあるゲストハウスのマネージャーによる、本当に行って欲しい食べ物屋さんの紹介サービスです。
+https://tabegoo.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーションの概要
+ゲストハウスの宿泊者向けに、ガイドブックには載ってない本当にお勧めできる食べ物屋さんを紹介しています。
+一人旅の方は掲示板で一緒に食べに行く人を募集して、旅の醍醐味である一期一会を楽しめます。(未実装)
 
-Things you may want to cover:
+# 使用技術
+- Ruby 2.5.1, Rails 5.2.0
+- HTML, Scss, Bootstrap, JavaScript, jQuery
+- MySQL 5.7
+- Docker, Docker-compose
+- Nginx
+- Heroku
+- RSpec
+- Circle CI/CD(未実装)
+- AWSを使用したデプロイ(未実装)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ....
+# アプリケーションの機能
+- ユーザー機能
+  - 新規登録、ログイン、ログアウト機能、ログイン保持機能
+  - マイページ、登録情報編集機能
+- 管理ユーザー機能
+  - ユーザー一覧の表示、一般ユーザーのアカウントや投稿、コメントを削除可能
+- 食べ物屋さん
+  - お店一覧表示、詳細表示、新規登録、編集、削除機能
+  - カテゴリー別に登録、表示可能
+  - 画像のアップロードはcarrierwaveを使用、複数画像同時投稿可能
+  - 登録住所からgeocodingによる緯度経度取得、GoogleMapsAPIで表示
+  - 食べ物屋さんの位置をマーカーで表示する
+  - トップページよりランダムにお勧めの表示
+- お気に入り登録機能
+  - Ajaxを使用、お気に入り一覧を表示
+- コメント機能
+  - コメント表示、コメント投稿、コメント削除機能
+- 通知機能
+  - コメントがあった際に管理者ユーザーに通知、通知一覧の表示 
+- Rspecによる自動テスト
+- 一緒に食べに行く人を募集する掲示板(未実装)
+ 
