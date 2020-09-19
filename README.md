@@ -11,7 +11,7 @@ https://tabegoo.herokuapp.com/
 - HTML, Scss, Bootstrap, JavaScript, jQuery
 - MySQL 5.7
 - Docker, Docker-compose
-- Nginx, Puma
+- Nginx
 - Heroku
 - RSpec
 - Circle CI/CD(未実装)
