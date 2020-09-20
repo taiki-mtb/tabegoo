@@ -1,71 +1,31 @@
-version: 2.1
+version: 2
 jobs:
-  rspec:
-    docker:
-      - image: circleci/ruby:2.5.1-node-browsers
-        environment:
-          RAILS_ENV: test
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_USERNAME: 'root'
-          MYSQL_PASSWORD: ''
-      - image: circleci/mysql:5.7
-    working_directory: ~/webapp
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      - run:
-          name: データベースの起動を待機
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
-
-  rubocop:
-    working_directory: ~/webapp
-    docker:
-      - image: circleci/ruby:2.5.1
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - gemfiles-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - gemfiles-{{ .Branch }}-
-            - gemfiles-master-
-      - run: bundle config --local path vendor/bundle
-      - run:
-          name: bundle install
-          command: bundle check || bundle install --jobs=8 --clean
-      - run:
-          name: Run rubocop
-          command: bundle exec rubocop --parallel
-      - save_cache:
-          key: gemfiles-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-orbs:
-  build-tools: circleci/build-tools@2.6.3
-workflows:
-  version: 2.1
   build:
-    jobs:
-      - rspec
-      - rubocop
+    # docker-composeがインストール済みの仮想マシンをプル
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - run:
+          name: database.ymlの再設定
+          command: |
+            rm ./config/database.yml
+            mv ./config/database.ci.yml ./config/database.yml
+      - run:
+          name: Dockerコンテナのビルド
+          command: docker-compose build
+      - run:
+          name: Dockerコンテナの起動
+          command: docker-compose up -d
+      - run:
+          name: データベースのセットアップ
+          command: docker-compose exec web bundle exec rails db:create db:migrate RAILS_ENV=test
+      - run:
+          name: RSpecテスト実行
+          command: docker-compose exec web bundle exec bin/rspec
+      - run:
+          name: Rubocopテスト実行
+          command: docker-compose exec web bundle exec rubocop
+      - run:
+          name: Dockerコンテナの停止
+          command: docker-compose down

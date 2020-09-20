@@ -1,0 +1,8 @@
+test:
+  adapter: mysql2
+  encoding: unicode
+  host: db
+  username: MYSQL_USER
+  password:
+  pool: 5
+  database: webapp_test
