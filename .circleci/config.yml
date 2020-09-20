@@ -1,5 +1,33 @@
 version: 2.1
 jobs:
+  rspec:
+    docker:
+      - image: circleci/ruby:2.5.1
+        environment:
+          RAILS_ENV: test
+          MYSQL_HOST: 127.0.0.1
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_USER: user_name
+          MYSQL_DB: webapp_test
+    working_directory: ~/webapp
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+      - run:
+          name: Rspec
+          command: bundle exec rspec
+
   rubocop:
     working_directory: ~/webapp
     docker:
@@ -29,4 +57,5 @@ workflows:
   version: 2.1
   build:
     jobs:
+      - rspec
       - rubocop
