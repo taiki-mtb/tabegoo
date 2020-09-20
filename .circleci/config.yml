@@ -6,11 +6,9 @@ jobs:
         environment:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
+          MYSQL_USERNAME: 'root'
+          MYSQL_PASSWORD: ''
       - image: circleci/mysql:5.7
-        environment:
-          MYSQL_USER: user_name
-          MYSQL_DB: webapp_test
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/webapp
     steps:
       - checkout
@@ -26,6 +24,7 @@ jobs:
       - run:
           name: データベースの起動を待機
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+      - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run:
           name: Rspecの実行
