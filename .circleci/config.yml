@@ -3,7 +3,13 @@ jobs:
   rspec:
     docker:
       - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          BUNDLE_PATH: vendor/bundle
+          BUNDLER_VERSION: 2.0.2
+          BUNDLE_JOBS: 4
+          BUNDLE_RETRY: 3
       - image: circleci/mysql:5.7
+        environment:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: 'root'
