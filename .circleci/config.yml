@@ -26,7 +26,7 @@ jobs:
           command: |
               sudo gem update --system
               sudo gem uninstall -ax bundler
-              sudo gem install bundle
+              sgem install bundler -v 2.1.4
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
