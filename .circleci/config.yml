@@ -22,7 +22,7 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
       - run:
-          name: setup bundler
+          name: setup bundler 1
           command: |
               sudo gem update --system
               sudo gem uninstall -ax bundler
