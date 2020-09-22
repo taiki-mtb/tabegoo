@@ -21,12 +21,6 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
-      - run:
-          name: setup bundler 1
-          command: |
-              sudo gem update --system
-              sudo gem uninstall -ax bundler
-              sudo gem install bundle
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
