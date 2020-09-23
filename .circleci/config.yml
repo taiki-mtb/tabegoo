@@ -5,7 +5,7 @@ jobs:
       - image: circleci/ruby:2.5.1-node-browsers
         environment:
           RAILS_ENV: test
-          MYSQL_HOST: 127.0.0.1
+          MYSQL_HOST: db
       - image: circleci/mysql:5.7
         environment:
           MYSQL_USER: user_name
