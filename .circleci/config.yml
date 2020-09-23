@@ -8,6 +8,8 @@ jobs:
           MYSQL_HOST: db
       - image: circleci/mysql:5.7
         environment:
+          MYSQL_ROOT_PASSWORD: db_root_password
+          MYSQL_DATABASE: webapp_test
           MYSQL_USER: user_name
           MYSQL_PASSWORD: user_password
     working_directory: ~/repo
