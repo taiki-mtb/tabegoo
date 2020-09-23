@@ -6,16 +6,10 @@ jobs:
         environment:
           RAILS_ENV: test
           MYSQL_HOST: db
-          MYSQL_USERNAME: 'root'
-          BUNDLE_PATH: vendor/bundle
-          BUNDLER_VERSION: 2.1.4
-          BUNDLE_JOBS: 4
-          BUNDLE_RETRY: 3
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_HOST: db
-          MYSQL_USERNAME: 'root'
-          MYSQL_PASSWORD: ''
+          MYSQL_USER: user_name
+          MYSQL_PASSWORD: user_password
     working_directory: ~/repo
     steps:
       - checkout
