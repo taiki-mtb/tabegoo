@@ -33,7 +33,7 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: データベースの起動を待機
-          command: dockerize -wait tcp://host:3306 -timeout 1m
+          command: dockerize -wait tcp://localhost:3306 -timeout 3m
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run:
