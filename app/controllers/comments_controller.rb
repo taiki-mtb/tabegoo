@@ -8,11 +8,13 @@ class CommentsController < ApplicationController
                                           content: params[:comment][:content])
     if !@restaurant.nil? && @comment.save
       flash[:success] = "コメントを追加しました！"
-      if current_user != @admin_user
-        @admin_user.notifications.create(restaurant_id: @restaurant.id,
-                                         from_user_id: current_user.id,
-                                         content: @comment.content)
-        @admin_user.update_attribute(:notification, true)
+      @admin_user.each do |admin|
+        if current_user != admin
+          admin.notifications.create(restaurant_id: @restaurant.id,
+                                     from_user_id: current_user.id,
+                                     content: @comment.content)
+          admin.update_attribute(:notification, true)
+        end
       end
     else
       flash[:danger] = "空のコメントは投稿できません。"

@@ -8,9 +8,11 @@
       <span class="comment"><%= comment.content %></span>
     </div>
     <div class="col-md-2">
-      <% if current_user.id == comment.user_id || admin? %>
-        <%= link_to "削除", comment_path(comment), method: :delete,
+      <% if logged_in? %>
+        <% if current_user.id == comment.user_id || admin? %>
+          <%= link_to "削除", comment_path(comment), method: :delete,
                                       data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
       <% end %>
     </div>
   </div>

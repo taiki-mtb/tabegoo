@@ -18,15 +18,17 @@
                   <span class="fas fa-store-alt"></span> <span>お店</span>
                 <% end %>
               </li>
-              <% if current_user.notification == true %>
-                <li class="new_notification header-link">
-              <% else %>
-                <li class="no_notification header-link">
+              <% if admin? %>
+                <% if current_user.notification == true %>
+                  <li class="new_notification header-link">
+                <% else %>
+                  <li class="no_notification header-link">
+                <% end %>
+                <%= link_to notifications_path do %>
+                  <span class="fas fa-bell"></span> <span>通知</span>
+                <% end %>
+                </li>
               <% end %>
-              <%= link_to notifications_path do %>
-                <span class="fas fa-bell"></span> <span>通知</span>
-              <% end %>
-              </li>
               <li class="header-link">
                 <%= link_to favorites_path do %>
                   <span class="fas fa-heart"></span> <span>お気に入り</span>
