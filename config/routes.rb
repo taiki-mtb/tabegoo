@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :comments,      only: [:create, :destroy]
   resources :notifications, only: :index
   resources :categories, except: [:new, :show]
+  resources :boards
   get    :signup,        to: 'users#new'
   get    :login,         to: 'sessions#new'
   post   :login,         to: 'sessions#create'
