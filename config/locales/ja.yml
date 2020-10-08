@@ -10,6 +10,7 @@ ja:
       user: ユーザー
       restaurant: レストラン
       comment: コメント
+      board: 掲示板
     attributes:
       user:
         id: ID
@@ -34,6 +35,8 @@ ja:
         user_id: コメント投稿者のID
         restaurant_id: コメントされたレストランのID
         content: コメント
+      board:
+        title: タイトル
   date:
     abbr_day_names:
     - 日

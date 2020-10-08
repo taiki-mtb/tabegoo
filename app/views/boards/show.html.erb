@@ -1,0 +1,14 @@
+<% provide(:title, 'たべGoo!掲示板') %>
+<div id="fh5co-portfolio">
+	<div class="container">
+    <%= link_to "スレッド一覧に戻る", "/boards" %>
+    <h1><%= @board.title %></h1>
+      <% if logged_in? %>
+        <% if current_user.id == @board.user_id || admin? %>
+          <%= link_to "タイトルを編集する", "/boards/#{@board.id}/edit" %> <br>
+          <%= link_to "この掲示板を削除する", board_path(@board), method: :delete, 
+                             data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+      <% end %>
+  </div>
+</div>

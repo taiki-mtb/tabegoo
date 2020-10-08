@@ -1,16 +1,17 @@
-<% provide(:title, "掲示板登録") %>
+<% provide(:title, 'タイトル編集') %>
 <div id="fh5co-portfolio">
 	<div class="container">
 		<div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= link_to "スレッド一覧に戻る", "/boards" %>
-        <h1>新規掲示板作成</h1>
+        <%= link_to @board.title, "/boards/#{@board.id}" %>
+        <hr>
+        <h1>タイトルの編集</h1>
         <%= form_with model: @board do |f| %>
           <div class = 'form-group'>
             <%= f.label :title %>
             <%= f.text_field :title, class: 'form-control' %>
           </div>
-          <%= f.submit "作成する", class: "btn btn-primary" %>
+          <%= f.submit "更新する", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

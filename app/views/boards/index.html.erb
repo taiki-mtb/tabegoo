@@ -5,7 +5,7 @@
     <%= link_to "新規スレッド作成", "/boards/new" %>
     <hr>
     <% @boards.each do |board| %>
-      <%= board.title %> <br>
+      <%= link_to board.title, "/boards/#{board.id}" %> <br>
     <% end %>
   </div>
 </div>
