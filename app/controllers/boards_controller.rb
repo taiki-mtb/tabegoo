@@ -1,24 +1,24 @@
 class BoardsController < ApplicationController
-	def index
-		@boards = Board.all
-	end
+  def index
+    @boards = Board.all
+  end
 
-	def new
-		@board = Board.new
-	end
+  def new
+    @board = Board.new
+  end
 
-	def create
-		@board = Board.new(user_id: current_user.id,
-			                  title: params[:board][:title])
-		if @board.save
-			flash[:success] = "スレッドが作成されました！"
-			redirect_to board_url(@board)
-		else
-			render 'new'
-		end
-	end
+  def create
+    @board = Board.new(user_id: current_user.id,
+                       title: params[:board][:title])
+    if @board.save
+      flash[:success] = "スレッドが作成されました！"
+      redirect_to board_url(@board)
+    else
+      render 'new'
+    end
+  end
 
-	def show
+  def show
     @board = Board.find(params[:id])
   end
 
@@ -32,29 +32,29 @@ class BoardsController < ApplicationController
       flash[:success] = "タイトルが更新されました！"
       redirect_to @board
     else
-    	render 'edit'
+      render 'edit'
     end
   end
 
   def destroy
-  	@board = Board.find(params[:id])
-  	if current_user.id == @board.user_id || current_user.admin?
-  	  @board.destroy
-  	  flash[:success] = "掲示板の削除に成功しました"
-  	  redirect_to boards_url
-  	else
-  		flash[:danger] = "他人のアカウントは削除できません"
-  		render "/boards"
-  	end
+    @board = Board.find(params[:id])
+    if current_user.id == @board.user_id || current_user.admin?
+      @board.destroy
+      flash[:success] = "掲示板の削除に成功しました"
+      redirect_to boards_url
+    else
+      flash[:danger] = "他人のアカウントは削除できません"
+      render "/boards"
+    end
   end
 
-	private
+  private
 
-	  def boards_params
-	  	params.require(:board).permit(:title, :user_id)
-	  end
+    def boards_params
+      params.require(:board).permit(:title, :user_id)
+    end
 
-	  def boards_params_update
+    def boards_params_update
       params.require(:board).permit(:title)
     end
 end
