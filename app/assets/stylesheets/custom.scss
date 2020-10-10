@@ -398,6 +398,7 @@ li.new_notification > a > span {
 
 a.make-board {
   color: white;
+  display: block;
 }
 
 .board-titles {
@@ -411,4 +412,8 @@ a.make-board {
 
 .board-by-user {
   margin-top: 5px;
+}
+
+.board_comment_del {
+  text-align: right;
 }

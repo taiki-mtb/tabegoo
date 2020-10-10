@@ -11,9 +11,19 @@ class BoardCommentsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def destroy
+    @board_comment = BoardComment.find(params[:id])
+    @board = @board_comment.board
+    if current_user.id == @board_comment.user_id || current_user.admin?
+      @board_comment.destroy
+      flash[:success] = "コメントを削除しました"
+    end
+    redirect_to board_url(@board)
+  end
+
   private
 
     def params_board_comment
-    	params.require(:board_comment).permit(:user_id, :content)
+      params.require(:board_comment).permit(:user_id, :content)
     end
 end

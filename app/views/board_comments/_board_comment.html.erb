@@ -1,0 +1,20 @@
+<% board_comment_user = User.find(board_comment.user_id) %>
+<li id="board_comment-<%= board_comment.id %>">
+  <div class="row">
+    <div class="col-md-3">
+      <span class="user"><%= link_to board_comment_user.name, board_comment_user %></span>
+    </div>
+    <div class="col-md-7">
+      <span class="comment"><%= board_comment.content %></span>
+    </div>
+    <div class="col-md-2">
+      <span class="comment-create-at"><%= board_comment.created_at.strftime('%Y/%m/%d') %></span>
+      <% if logged_in? %>
+        <% if current_user.id == board_comment.user_id || admin? %>
+          <%= link_to "削除", board_comment_path(board_comment), method: :delete,
+                                      data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</li>
