@@ -1,0 +1,21 @@
+<% provide(:title, 'タイトル編集') %>
+<div id="fh5co-portfolio">
+	<div class="container">
+		<div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= link_to @board.title, board_path(@board) %>
+        <h1>タイトルの編集</h1>
+        <% if @board.errors.any? %>
+          <%= @board.errors.full_messages %>
+        <% end %>
+        <%= form_with model: @board do |f| %>
+          <div class = 'form-group'>
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <%= f.submit "更新する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

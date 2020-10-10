@@ -1,0 +1,21 @@
+<% provide(:title, "掲示板登録") %>
+<div id="fh5co-portfolio">
+	<div class="container">
+		<div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <%= link_to "スレッド一覧に戻る", boards_path %>
+        <h1>新規掲示板作成</h1>
+        <% if @board.errors.any? %>
+          <%= @board.errors.full_messages %>
+        <% end %>
+        <%= form_with model: @board do |f| %>
+          <div class = 'form-group'>
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <%= f.submit "作成する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

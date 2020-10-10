@@ -384,3 +384,36 @@ li.new_notification > a > span {
 #top-logo {
   width: 50%;
 }
+
+//掲示板
+
+.board-by {
+  text-align: right;
+  margin-top: -20px;
+}
+
+.btn-board {
+  width: 100%;
+}
+
+a.make-board {
+  color: white;
+  display: block;
+}
+
+.board-titles {
+  padding: 10px;
+}
+
+.board-titles:nth-child(even) {
+  background-color: #dd356e1f;
+  border-radius: 6px;
+}
+
+.board-by-user {
+  margin-top: 5px;
+}
+
+.board_comment_del {
+  text-align: right;
+}
