@@ -12,9 +12,9 @@ class BoardsController < ApplicationController
 			                  title: params[:board][:title])
 		if @board.save
 			flash[:success] = "スレッドが作成されました！"
-			redirect_to "/boards"
+			redirect_to board_url(@board)
 		else
-			render 'boards/new'
+			render 'new'
 		end
 	end
 
@@ -41,7 +41,7 @@ class BoardsController < ApplicationController
   	if current_user.id == @board.user_id || current_user.admin?
   	  @board.destroy
   	  flash[:success] = "掲示板の削除に成功しました"
-  	  redirect_to "/boards"
+  	  redirect_to boards_url
   	else
   		flash[:danger] = "他人のアカウントは削除できません"
   		render "/boards"

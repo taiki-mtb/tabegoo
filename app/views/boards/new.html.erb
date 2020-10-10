@@ -2,9 +2,12 @@
 <div id="fh5co-portfolio">
 	<div class="container">
 		<div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <%= link_to "スレッド一覧に戻る", "/boards" %>
+      <div class="col-md-8 col-md-offset-2">
+        <%= link_to "スレッド一覧に戻る", boards_path %>
         <h1>新規掲示板作成</h1>
+        <% if @board.errors.any? %>
+          <%= @board.errors.full_messages %>
+        <% end %>
         <%= form_with model: @board do |f| %>
           <div class = 'form-group'>
             <%= f.label :title %>

@@ -3,9 +3,11 @@
 	<div class="container">
 		<div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= link_to @board.title, "/boards/#{@board.id}" %>
-        <hr>
+        <%= link_to @board.title, board_path(@board) %>
         <h1>タイトルの編集</h1>
+        <% if @board.errors.any? %>
+          <%= @board.errors.full_messages %>
+        <% end %>
         <%= form_with model: @board do |f| %>
           <div class = 'form-group'>
             <%= f.label :title %>

@@ -1,11 +1,22 @@
 <% provide(:title, 'たべGoo!掲示板') %>
 <div id="fh5co-portfolio">
 	<div class="container">
-    <h1>たべGoo!掲示板</h1>
-    <%= link_to "新規スレッド作成", "/boards/new" %>
-    <hr>
-    <% @boards.each do |board| %>
-      <%= link_to board.title, "/boards/#{board.id}" %> <br>
-    <% end %>
+	  <div class="col-md-8 col-md-offset-2">
+      <h1>たべGoo!掲示板</h1>
+      <span class="btn btn-primary btn-board">
+        <%= link_to "新規スレッド作成", new_board_path, class: "make-board" %>
+      </span>
+      <hr>
+      <% @boards.each do |board| %>
+        <div class="board-titles">
+          <% board_user = User.find(board.user_id) %>
+          <%= link_to board.title, board_path(board) %> <br>
+          <p class="board-by-user">
+          	by  <%= link_to board_user.name, board_user %>
+          	<%= board.created_at.strftime('%Y/%m/%d') %>
+          </p> 
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

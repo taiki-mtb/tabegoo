@@ -1,14 +1,21 @@
 <% provide(:title, 'たべGoo!掲示板') %>
+<% board_user = User.find(@board.user_id) %>
 <div id="fh5co-portfolio">
 	<div class="container">
-    <%= link_to "スレッド一覧に戻る", "/boards" %>
-    <h1><%= @board.title %></h1>
+    <div class="col-md-8 col-md-offset-2">
+      <%= link_to "スレッド一覧に戻る", boards_path %>
+      <h1><%= @board.title %></h1>
+      <p class="board-by">
+       	by  <%= link_to board_user.name, board_user %>
+       	<%= @board.created_at.strftime('%Y/%m/%d') %>
+      </p>
       <% if logged_in? %>
         <% if current_user.id == @board.user_id || admin? %>
-          <%= link_to "タイトルを編集する", "/boards/#{@board.id}/edit" %> <br>
+          <%= link_to "タイトルを編集する", edit_board_path(@board) %> <br>
           <%= link_to "この掲示板を削除する", board_path(@board), method: :delete, 
                              data: { confirm: "本当に削除しますか？" } %>
         <% end %>
       <% end %>
+    </div>
   </div>
 </div>
