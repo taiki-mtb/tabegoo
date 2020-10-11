@@ -1,4 +1,6 @@
 class BoardCommentsController < ApplicationController
+  before_action :logged_in_user
+
   def create
     @board = Board.find(params[:board_id])
     @board_comment = @board.board_comments.build(user_id: current_user.id,
@@ -20,10 +22,4 @@ class BoardCommentsController < ApplicationController
     end
     redirect_to board_url(@board)
   end
-
-  private
-
-    def params_board_comment
-      params.require(:board_comment).permit(:user_id, :content)
-    end
 end
