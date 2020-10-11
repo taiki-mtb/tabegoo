@@ -1,6 +1,8 @@
 class BoardsController < ApplicationController
+  before_action :logged_in_user, only: [:create]
+
   def index
-    @boards = Board.all
+    @boards = Board.paginate(page: params[:page], per_page: 10)
   end
 
   def new
