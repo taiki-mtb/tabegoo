@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  before_action :logged_in_user, only: [:create]
+
   def index
     @boards = Board.all
   end

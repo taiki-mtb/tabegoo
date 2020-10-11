@@ -30,6 +30,11 @@
                 </li>
               <% end %>
               <li class="header-link">
+                <%= link_to boards_path do %>
+                  <span class="fas fa-id-badge"></span> <span>掲示板</span>
+                <% end %>
+              </li>
+              <li class="header-link">
                 <%= link_to favorites_path do %>
                   <span class="fas fa-heart"></span> <span>お気に入り</span>
                 <% end %>
@@ -47,7 +52,12 @@
             <% else %>
               <li class="header-link">
                 <%= link_to restaurants_path do %>
-                  <span class="fas fa-store-alt"></span> <span>レストラン</span>
+                  <span class="fas fa-store-alt"></span> <span>お店</span>
+                <% end %>
+              </li>
+              <li class="header-link">
+                <%= link_to boards_path do %>
+                  <span class="fas fa-id-badge"></span> <span>掲示板</span>
                 <% end %>
               </li>
               <li class="header-link">
